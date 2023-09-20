@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   win_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/20 17:28:22 by jodos-sa         ###   ########.fr       */
+/*   Created: 2023/09/20 15:07:53 by jodos-sa          #+#    #+#             */
+/*   Updated: 2023/09/20 16:53:20 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int main()
+int	keyhooks(int key, t_map *map)
 {
-	t_map	map;
-
-
-	map.rgb_floor[0] = 164;
-	map.rgb_floor[1] = 169;
-	map.rgb_floor[2] = 20;
-	map.rgb_ceil[0] = 153;
-	map.rgb_ceil[1] = 204;
-	map.rgb_ceil[2] = 255;
-	//map = ft_memalloc(sizeof(t_map *));
-	make_windows(&map);
+	if (!(map->mlx))
+		return (0);
+	if (key == 0xff1b)
+	{
+		ft_putendl_fd("Exiting", 1);
+		close_win(map);
+		//free_all(map);
+	}
 	return (0);
 }
