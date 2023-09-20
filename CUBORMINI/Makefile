@@ -6,7 +6,7 @@
 #    By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/20 15:22:03 by brumarti         ###   ########.fr        #
+#    Updated: 2023/09/20 17:01:55 by brumarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 $(OBJ_PATH):
-				@mkdir $(OBJ_PATH) \
+				@mkdir $(OBJ_PATH)
 				@mkdir -p $@/map_valid/
 
 clean:

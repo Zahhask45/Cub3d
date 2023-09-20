@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/20 15:17:18 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:15:09 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ typedef struct s_map
 	char	**map;
 	int		n_cols;
 	int		n_lines;
-	int		start_pos[2];
+	int		p_pos[2];
+	char	p_dir;
+	int		f_rgb[3];
+	int		c_rgb[3];
+	
 }			t_map;
 
 
