@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/18 14:46:38 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:17:18 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,21 @@ typedef struct s_win
 	int		endian;
 }			t_win;
 
+typedef struct s_map
+{
+	char	**map;
+	int		n_cols;
+	int		n_lines;
+	int		start_pos[2];
+}			t_map;
+
+
 
 //* UTILS
 
 void	*ft_memalloc(size_t size);
 
+//* CREATE_MAP
+void	create_map(char *path_map);
 
 #endif

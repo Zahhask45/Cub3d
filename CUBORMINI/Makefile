@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
+#    By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/18 14:36:29 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/09/20 15:22:03 by brumarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ OBJ_PATH	= ./obj/
 
 
 SOURCES		=	main.c \
-				utils.c
+				utils.c \
+				map_valid/create_map.c
 
 
 
@@ -71,7 +72,8 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 $(OBJ_PATH):
-				@mkdir $(OBJ_PATH)
+				@mkdir $(OBJ_PATH) \
+				@mkdir -p $@/map_valid/
 
 clean:
 	@$(RM) $(OBJ_PATH) $(OBJ_PATH_BONUS)

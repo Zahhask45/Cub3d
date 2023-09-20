@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/18 14:47:19 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:17:10 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	make_windows(t_win *win)
 	mlx_loop(win->mlx);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-	t_win	*win;
+	/* t_win	*win;
 
 	win = ft_memalloc(sizeof(t_win *));
-	make_windows(win);
+	make_windows(win);*/
+	if (argc != 2)
+		return (EXIT_FAILURE);
+	create_map(argv[1]);
 	return (0);
 }
