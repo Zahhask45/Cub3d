@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/20 17:46:02 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:02:18 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,49 +28,6 @@ void	print_map(t_map map)
 		}
 		ft_putchar_fd('\n', 0);
 		i++;
-	}
-}
-
-void	init_textures(t_map *map, int fd)
-{
-	int		i;
-	int		index;
-	int		j;
-	int		start;
-	char	*temp;
-	char	*line;
-	
-	i = 0;
-	while (i < 6)
-	{
-		line = get_next_line(fd);
-		if (line[0] != '\n')
-			i++;
-		else
-			continue;
-		if (line[0] == 'C' || line[0] == 'F')
-		{
-			index = 0;
-			j = 1;
-			while (line[j])
-			{
-				if (ft_isdigit(line[j]))
-				{
-					start = j;
-					while (ft_isdigit(line[j]))
-						j++;
-					temp = ft_substr(line, start, j - start);
-					if (line[0] == 'C')
-						map->c_rgb[index] = ft_atoi(temp);
-					else
-						map->f_rgb[index] = ft_atoi(temp);
-					index++;
-					free(temp);
-				}
-				j++;
-			}
-		}
-		free(line);
 	}
 }
 
@@ -105,7 +62,7 @@ void	get_size(char *path_map, t_map *map)
 int	valid_path(char *path_map)
 {
 	char	*temp;
-	
+
 	if (open(path_map, O_RDONLY) == -1)
 	{
 		ft_putstr_fd("File doesn't exist.\n", STDERR_FILENO);
@@ -138,7 +95,7 @@ void	write_map(char *path_map, t_map *map)
 		j = 0;
 		line = get_next_line(fd);
 		if (!line)
-			break;
+			break ;
 		if (line[0] == '\n')
 			continue ;
 		map->map[i] = ft_strdup(line);
@@ -168,7 +125,8 @@ void	create_map(char *path_map)
 		return ;
 	get_size(path_map, &map);
 	write_map(path_map, &map);
-	//printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map.n_lines, map.n_cols, map.p_pos[0], map.p_pos[1], map.p_dir);
-	//printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map.f_rgb[0], map.f_rgb[1], map.f_rgb[2], map.c_rgb[0], map.c_rgb[1], map.c_rgb[2]);
+	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map.n_lines, map.n_cols, map.p_pos[0], map.p_pos[1], map.p_dir);
+	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map.f_rgb[0], map.f_rgb[1], map.f_rgb[2], map.c_rgb[0], map.c_rgb[1], map.c_rgb[2]);
+	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map.n_path, map.s_path, map.w_path, map.e_path);
 	print_map(map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/18 14:34:21 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/21 15:14:16 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,11 @@ void	*ft_memalloc(size_t size)
 		return (NULL);
 	ft_bzero(mem, size);
 	return (mem);
+}
+
+int	ft_iswspace(char c)
+{
+	if (c < 33 || c > 126)
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/20 17:01:55 by brumarti         ###   ########.fr        #
+#    Updated: 2023/09/21 14:46:30 by brumarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ OBJ_PATH	= ./obj/
 
 SOURCES		=	main.c \
 				utils.c \
-				map_valid/create_map.c
+				map_valid/create_map.c \
+				map_valid/init_textures.c
 
 
 
