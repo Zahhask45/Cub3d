@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/22 13:52:46 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/09/22 16:57:15 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ WIN_DIR		=	window/
 
 WINDOW		=	window.c \
 				win_utils.c \
+				init_minimap.c \
 
 MAP_DIR		=	map_valid/
 

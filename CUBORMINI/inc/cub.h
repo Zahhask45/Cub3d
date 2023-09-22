@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 14:47:26 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:26:48 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_map
 	void	*mlx;
 	void	*mlx_win;
 	t_img	img[5];
+	t_img	minimap;
 
 	char	**map;
 	int		n_cols;
@@ -54,16 +55,21 @@ typedef struct s_map
 
 //* UTILS
 
+int		is_valid_char(char c, char *play);
 void	*ft_memalloc(size_t size);
 int		ft_iswspace(char c);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);
+int		create_trgb(int t, int red, int green, int blue);
 
 //* INIT_TEXTURES
 void	init_textures(t_map *map, int fd);
 void	make_windows(t_map *map);
 int		close_win(t_map *map);
 int		keyhooks(int key, t_map *map);
+
+//* MINIMAP
+void	init_minimap(t_map *map); 
 
 #endif

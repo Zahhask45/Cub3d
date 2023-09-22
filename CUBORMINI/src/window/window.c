@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 14:46:01 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:39:24 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,14 @@ void	ft_init_img(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < 5)
-	{
-		map->img[i].mlx_img = NULL;
-		map->img[i].path = NULL;
-		i++;
-	}
-	i = 0;
-	/* while (1 < 4)
+	while (i < 4)
 	{
 		map->img[i].mlx_img = mlx_xpm_file_to_image(map->mlx, map->img[i].path,
 				&map->img[i].width, &map->img[i].height);
 		i++;
-	} */
+	}
 	map->img[4].mlx_img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	i = 4;
+	i = 0;
 	while (i < 5)
 	{
 		map->img[i].addr = mlx_get_data_addr(map->img[i].mlx_img,
@@ -89,6 +82,8 @@ int	render(t_map *map)
 		x++;
 	}
 	mlx_put_image_to_window(map->mlx, map->mlx_win, map->img[4].mlx_img, 0, 0);
+	mlx_put_image_to_window(map->mlx, map->mlx_win,
+		map->minimap.mlx_img, 10, 10);
 	return (0);
 }
 
@@ -97,6 +92,7 @@ void	make_windows(t_map *map)
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "BANANA");
 	ft_init_img(map);
+	init_minimap(map);
 	mlx_loop_hook(map->mlx, &render, map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, keyhooks, map);
 	mlx_hook(map->mlx_win, 17, 0, close_win, map);

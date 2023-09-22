@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 14:45:47 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:23:37 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	loop_textures(char *line, t_map *map, char c)
 	i = 2;
 	while (line[i])
 	{
-		if (ft_isalpha(line[i]))
+		if (ft_isalpha(line[i]) || line[i] == '.' || line[i] == '/')
 		{
 			start = i;
 			while (line[i] && !ft_iswspace(line[i]))

@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 14:47:00 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:32:20 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	write_map(char *path_map, t_map *map)
 		free(line);
 		i++;
 	}
+	map->map[i] = NULL;
 	close(fd);
 }
 
