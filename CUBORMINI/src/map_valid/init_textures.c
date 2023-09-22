@@ -3,29 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 14:45:47 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:08:33 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_rgb(char *line, t_map *map)
+void	init_rgb(char *line, t_map *map, int j)
 {
 	int		index;
-	int		j;
 	int		start;
 	char	*temp;
 
 	index = 0;
-	j = 1;
-	while (line[j])
+	while (line[j] && index < 3)
 	{
 		if (ft_isdigit(line[j]))
 		{
 			start = j;
+			if (line[j - 1] == '-')
+			{
+				ft_putstr_fd("Error\nInvalid RGB\n", STDERR_FILENO);
+				exit(1);
+			}
 			while (ft_isdigit(line[j]))
 				j++;
 			temp = ft_substr(line, start, j - start);
@@ -38,20 +41,25 @@ void	init_rgb(char *line, t_map *map)
 		}
 		j++;
 	}
+	if (index == 2)
+	{
+		ft_putstr_fd("Error\nMissing RGB\n", STDERR_FILENO);
+		exit(1);
+	}
 }
 
-void	loop_textures(char *line, t_map *map, char c)
+void	loop_textures(char *line, t_map *map, char c, int j)
 {
 	int	i;
 	int	start;
 
-	i = 2;
+	i = j + 2;
 	while (line[i])
 	{
-		if (ft_isalpha(line[i]))
+		if (ft_isalpha(line[i]) || line[i] == '.' || line[i] == '/')
 		{
 			start = i;
-			while (line[i] && !ft_iswspace(line[i]))
+			while (line[i] && !ft_iswspace(line[i]) && line[i] != '\n')
 				i++;
 			if (c == 'N')
 				map->img[0].path = ft_substr(line, start, i - start);
@@ -61,42 +69,47 @@ void	loop_textures(char *line, t_map *map, char c)
 				map->img[2].path = ft_substr(line, start, i - start);
 			else
 				map->img[3].path = ft_substr(line, start, i - start);
+			break;
 		}
 		i++;
 	}
 }
 
-void	get_textures(char *line, t_map *map, char c)
+void	get_textures(char *line, t_map *map, char c, int j)
 {
 	if (c == 'N' || c == 'S')
 	{
-		if (line[1] == 'O')
-			loop_textures(line, map, c);
+		if (line[j + 1] == 'O')
+			loop_textures(line, map, c, j);
 	}
-	else if (c == 'W' && line[1] == 'E')
-		loop_textures(line, map, c);
-	else if (c == 'E' && line[1] == 'A')
-		loop_textures(line, map, c);
+	else if (c == 'W' && line[j + 1] == 'E')
+		loop_textures(line, map, c, j);
+	else if (c == 'E' && line[j + 1] == 'A')
+		loop_textures(line, map, c, j);
 }
 
 void	init_textures(t_map *map, int fd)
 {
 	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
 	while (i < 6)
 	{
+		j = 0;
 		line = get_next_line(fd);
-		if (line[0] != '\n')
+		while (ft_iswspace(j))
+			j++;
+		if (line[j] != '\n')
 			i++;
 		else
 			continue ;
-		if (line[0] == 'C' || line[0] == 'F')
-			init_rgb(line, map);
-		else if (line[0] == 'N' || line[0] == 'S'
-			|| line[0] == 'E' || line[0] == 'W')
-			get_textures(line, map, line[0]);
+		if (line[j] == 'C' || line[j] == 'F')
+			init_rgb(line, map, j + 1);
+		else if (line[j] == 'N' || line[j] == 'S'
+			|| line[j] == 'E' || line[j] == 'W')
+			get_textures(line, map, line[j], j);
 		free(line);
 	}
 }

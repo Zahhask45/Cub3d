@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/21 15:14:16 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:06:05 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,34 @@ void	*ft_memalloc(size_t size)
 
 int	ft_iswspace(char c)
 {
-	if (c < 33 || c > 126)
+	if (c == ' ' || c == '\t')
 		return (1);
 	return (0);
+}
+
+int	ft_isvalidc(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E'
+		|| c == 'F' || c == 'C' || c == '1' || ft_iswspace(c))
+		return (1);
+	return (0);
+}
+
+void	print_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->n_lines)
+	{
+		j = 0;
+		while (j < map->n_cols)
+		{
+			ft_putchar_fd(map->map[i][j], 0);
+			j++;
+		}
+		ft_putchar_fd('\n', 0);
+		i++;
+	}
 }

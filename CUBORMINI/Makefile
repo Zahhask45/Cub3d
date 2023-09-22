@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
+#    By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/22 13:52:46 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/09/22 16:48:16 by brumarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ MAP_DIR		=	map_valid/
 
 MAP			=	create_map.c \
 				init_textures.c \
+				check_valid.c
 
 SRC			=	$(addprefix $(SRC_DIR), $(SOURCES))
 WIN_SRC		=	$(addprefix $(WIN_DIR), $(WINDOW))
@@ -73,6 +74,7 @@ SOURCES		=	$(WIN_SRC) \
 				$(MAP_SRC) \
 				main.c \
 				utils.c \
+				memory.c
 
 
 OBJS		=	$(SOURCES:.c=.o)

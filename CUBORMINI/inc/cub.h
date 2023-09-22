@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 14:47:26 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:06:12 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_map
 
 void	*ft_memalloc(size_t size);
 int		ft_iswspace(char c);
+int		ft_isvalidc(char c);
+void	print_map(t_map *map);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);
@@ -65,5 +67,8 @@ void	init_textures(t_map *map, int fd);
 void	make_windows(t_map *map);
 int		close_win(t_map *map);
 int		keyhooks(int key, t_map *map);
+
+//* CHECK_VALID
+void	validate_map(t_map *map);
 
 #endif
