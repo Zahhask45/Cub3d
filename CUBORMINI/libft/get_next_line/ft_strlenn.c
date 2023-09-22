@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlenn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 14:39:21 by jodos-sa         ###   ########.fr       */
+/*   Created: 2022/11/25 15:58:17 by brumarti          #+#    #+#             */
+/*   Updated: 2022/11/25 15:58:50 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../libft.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strlenn(const char *s)
 {
-	t_map	map;
+	size_t	length;
 
-	if (argc != 2)
-		return (EXIT_FAILURE);
-	create_map(argv[1], &map);
-	//map = ft_memalloc(sizeof(t_map *));
-	make_windows(&map);
-	return (0);
+	length = 0;
+	if (!s)
+		return (length);
+	while (s[length])
+		length++;
+	return (length);
 }

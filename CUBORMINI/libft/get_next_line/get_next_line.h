@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/21 15:14:16 by brumarti         ###   ########.fr       */
+/*   Created: 2022/11/11 11:58:49 by brumarti          #+#    #+#             */
+/*   Updated: 2022/12/20 19:41:38 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+# include <stdlib.h>
+# include "../libft.h"
 
-void	*ft_memalloc(size_t size)
-{
-	void	*mem;
+char	*get_next_line(int fd);
+size_t	ft_strchrr(const char *s, int c);
+size_t	ft_strlenn(const char *s);
 
-	mem = malloc(size);
-	if (!mem)
-		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
-}
-
-int	ft_iswspace(char c)
-{
-	if (c < 33 || c > 126)
-		return (1);
-	return (0);
-}
+#endif

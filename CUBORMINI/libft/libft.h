@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 18:50:13 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/04/30 16:19:57 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/20 15:41:45 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchrr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 14:39:21 by jodos-sa         ###   ########.fr       */
+/*   Created: 2022/11/11 13:48:41 by brumarti          #+#    #+#             */
+/*   Updated: 2022/11/25 16:01:21 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../libft.h"
 
-int	main(int argc, char *argv[])
+size_t	ft_strchrr(const char *s, int c)
 {
-	t_map	map;
+	size_t	i;
+	size_t	length;
 
-	if (argc != 2)
-		return (EXIT_FAILURE);
-	create_map(argv[1], &map);
-	//map = ft_memalloc(sizeof(t_map *));
-	make_windows(&map);
-	return (0);
+	if (!s)
+		return (-1);
+	length = ft_strlenn(s);
+	i = 0;
+	while (i <= length)
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
