@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 17:06:05 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:44:41 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_map(t_map *map)
 	while (i < map->n_lines)
 	{
 		j = 0;
-		while (j < map->n_cols)
+		while (j < (int)ft_strlen(map->map[i]))
 		{
 			ft_putchar_fd(map->map[i][j], 0);
 			j++;

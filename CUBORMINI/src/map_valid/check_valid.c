@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 17:08:40 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:25:10 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	validate_map(t_map *map)
 	char	c;
 
 	i = 0;
-	while (map->map[i])
+	while (i < map->n_lines)
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (j < (int)ft_strlen(map->map[i]))
 		{
 			c = map->map[i][j];
-			if (i == 0 || i == map->n_lines - 1 || j == 0 || j == (int)ft_strlen(map->map[i] - 1)) 
+			if (i == 0 || i == map->n_lines - 1 || j == 0 || j == (int)ft_strlen(map->map[i]) - 1) 
 				valid_border(c);
 			else if (c != '1' && c != '0' && c != ' ' && c != map->p_dir)
 			{
@@ -51,3 +51,5 @@ void	validate_map(t_map *map)
 		exit(1);
 	}
 }
+
+// TODO: map_too_small.cub; player_none; textures_dir; textures_duplicates; textures_missing; textures_not_xpm;
