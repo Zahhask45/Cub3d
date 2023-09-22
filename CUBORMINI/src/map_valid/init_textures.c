@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/21 15:14:36 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:45:47 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	loop_textures(char *line, t_map *map, char c)
 			while (line[i] && !ft_iswspace(line[i]))
 				i++;
 			if (c == 'N')
-				map->n_path = ft_substr(line, start, i - start);
+				map->img[0].path = ft_substr(line, start, i - start);
 			else if (c == 'S')
-				map->s_path = ft_substr(line, start, i - start);
+				map->img[1].path = ft_substr(line, start, i - start);
 			else if (c == 'W')
-				map->w_path = ft_substr(line, start, i - start);
+				map->img[2].path = ft_substr(line, start, i - start);
 			else
-				map->e_path = ft_substr(line, start, i - start);
+				map->img[3].path = ft_substr(line, start, i - start);
 		}
 		i++;
 	}

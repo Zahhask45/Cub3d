@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/21 15:02:18 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:47:00 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	print_map(t_map map)
+void	print_map(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map.n_lines)
+	while (i < map->n_lines)
 	{
 		j = 0;
-		while (j < map.n_cols)
+		while (j < map->n_cols)
 		{
-			ft_putchar_fd(map.map[i][j], 0);
+			ft_putchar_fd(map->map[i][j], 0);
 			j++;
 		}
 		ft_putchar_fd('\n', 0);
@@ -115,18 +115,16 @@ void	write_map(char *path_map, t_map *map)
 	close(fd);
 }
 
-void	create_map(char *path_map)
+void	create_map(char *path_map, t_map *map)
 {
-	t_map	map;
-
-	map.n_cols = 0;
-	map.n_lines = 0;
+	map->n_cols = 0;
+	map->n_lines = 0;
 	if (valid_path(path_map) == EXIT_FAILURE)
 		return ;
-	get_size(path_map, &map);
-	write_map(path_map, &map);
-	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map.n_lines, map.n_cols, map.p_pos[0], map.p_pos[1], map.p_dir);
-	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map.f_rgb[0], map.f_rgb[1], map.f_rgb[2], map.c_rgb[0], map.c_rgb[1], map.c_rgb[2]);
-	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map.n_path, map.s_path, map.w_path, map.e_path);
+	get_size(path_map, map);
+	write_map(path_map, map);
+	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->p_dir);
+	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map->f_rgb[0], map->f_rgb[1], map->f_rgb[2], map->c_rgb[0], map->c_rgb[1], map->c_rgb[2]);
+	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map->img[0].path, map->img[1].path, map->img[2].path, map->img[3].path);
 	print_map(map);
 }
