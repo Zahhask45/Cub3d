@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 17:39:24 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:25:13 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,29 @@ int	render(t_map *map)
 	return (0);
 }
 
+void	raycast_render(t_map *map)
+{
+	(void)map;
+	//textures_pixel(map);
+}
+
+void	render_images(t_map *map)
+{
+	(void)map;
+	raycast_render(map);
+}
+
 void	make_windows(t_map *map)
 {
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "BANANA");
 	ft_init_img(map);
+	//render_images(map);
 	init_minimap(map);
 	mlx_loop_hook(map->mlx, &render, map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, keyhooks, map);
+	mlx_mouse_move(map->mlx, map->img, WIDTH / 2,
+			HEIGHT / 2);
 	mlx_hook(map->mlx_win, 17, 0, close_win, map);
 	mlx_loop(map->mlx);
 }
