@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 17:06:12 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:54:49 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ typedef struct s_map
 }			t_map;
 
 //* UTILS
-
 void	*ft_memalloc(size_t size);
 int		ft_iswspace(char c);
 int		ft_isvalidc(char c);
 void	print_map(t_map *map);
+void	error_msg(char *msg);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);

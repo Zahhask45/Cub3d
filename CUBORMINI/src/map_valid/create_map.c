@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 17:18:07 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:59:09 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,7 @@ void	create_map(char *path_map, t_map *map)
 	if (valid_path(path_map) == EXIT_FAILURE)
 		exit(1);
 	if (!valid_map(path_map))
-	{
-		ft_putstr_fd("Error\nInvalid char !\n", STDERR_FILENO);
-		exit(1);
-	}
+		error_msg("Invalid char !");
 	get_size(path_map, map);
 	write_map(path_map, map);
 	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->p_dir);

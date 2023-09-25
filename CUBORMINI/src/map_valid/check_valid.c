@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 18:25:10 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:04:11 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,32 @@
 void	valid_border(char c)
 {
 	if (c != ' ' && c != '1' && c != '\t')
+		error_msg("Invalid char!");
+}
+
+void	valid_textures(t_map *map)
+{
+	int		i;
+	int		j;
+	char 	*temp;
+
+	i = 0;
+	while (i < 4)
 	{
-		ft_putstr_fd("Error\nInvalid char!\n", STDERR_FILENO);
-		exit(1);
+		j = i + 1;
+		while (j < 4)
+		{
+			if (ft_strncmp(map->img[i].path, map->img[j].path, ft_strlen(map->img[i].path)) == 0)
+				error_msg("Textures can't be the same.");
+			j++;
+		}
+		if (open(map->img[i].path, O_RDONLY) == -1)
+			error_msg("Invalid dir.");
+		temp = ft_substr(map->img[i].path, ft_strlen(map->img[i].path) - 4, 4);
+		if (ft_strncmp(temp, ".xpm", 4) != 0)
+			error_msg("Invalid file type.");
+		free(temp);
+		i++;
 	}
 }
 
@@ -37,19 +60,14 @@ void	validate_map(t_map *map)
 			if (i == 0 || i == map->n_lines - 1 || j == 0 || j == (int)ft_strlen(map->map[i]) - 1) 
 				valid_border(c);
 			else if (c != '1' && c != '0' && c != ' ' && c != map->p_dir)
-			{
-				ft_putstr_fd("Error\nInvalid char!\n", STDERR_FILENO);
-				exit(1);
-			}
+				error_msg("Invalid char!");
 			j++;
 		}
 		i++;
 	}
 	if (map->f_rgb[0] == -1 || map->c_rgb[0] == -1)
-	{
-		ft_putstr_fd("Error\nMissing RGB\n", STDERR_FILENO);
-		exit(1);
-	}
+		error_msg("Missing RGB");
+	valid_textures(map);
 }
 
-// TODO: map_too_small.cub; player_none; textures_dir; textures_duplicates; textures_missing; textures_not_xpm;
+// TODO: map_too_small.cub; player_none; textures_missing; textures_not_xpm;

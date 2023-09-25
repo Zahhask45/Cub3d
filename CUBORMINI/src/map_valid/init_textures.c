@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 17:28:18 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:00:17 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	init_rgb(char *line, t_map *map, int j)
 		{
 			start = j;
 			if (line[j - 1] == '-')
-			{
-				ft_putstr_fd("Error\nInvalid RGB\n", STDERR_FILENO);
-				exit(1);
-			}
+				error_msg("Invalid RGB.");
 			while (ft_isdigit(line[j]))
 				j++;
 			temp = ft_substr(line, start, j - start);
@@ -42,10 +39,7 @@ void	init_rgb(char *line, t_map *map, int j)
 		j++;
 	}
 	if (index == 2)
-	{
-		ft_putstr_fd("Error\nMissing RGB\n", STDERR_FILENO);
-		exit(1);
-	}
+		error_msg("Missing RGB.");
 }
 
 void	loop_textures(char *line, t_map *map, char c, int j)
@@ -100,10 +94,7 @@ void	init_textures(t_map *map, int fd)
 		j = 0;
 		line = get_next_line(fd);
 		if (line[0] == '1' || line[0] == '0')
-		{
-			ft_putstr_fd("Error\nMap can't come first.\n", STDERR_FILENO);
-			exit(1);
-		}
+			error_msg("Map can't come first.");
 		while (ft_iswspace(j))
 			j++;
 		if (line[j] != '\n')
