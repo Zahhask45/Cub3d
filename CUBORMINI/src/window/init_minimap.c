@@ -6,13 +6,13 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:29:15 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/24 14:20:31 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/02 15:46:06 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	minimap_pix(t_map *map, int x, int y, int colour)
+/* void	minimap_pix(t_map *map, int x, int y, int colour)
 {
 	char	*pix;
 
@@ -76,5 +76,5 @@ void	init_minimap(t_map *map)
 	map->minimap.addr = mlx_get_data_addr(map->minimap.mlx_img, 
 				&map->minimap.bits_per_pixel, &map->minimap.line_length, &map->minimap.endian);
 	make_minimap(map);
-}
+} */
 

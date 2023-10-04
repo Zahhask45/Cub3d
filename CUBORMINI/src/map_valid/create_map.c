@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 17:32:20 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/28 14:30:35 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,9 @@ void	write_map(char *path_map, t_map *map)
 			{
 				map->p_pos[0] = j;
 				map->p_pos[1] = i;
-				map->p_dir = line[j];
+				map->player.pos_x = j;
+				map->player.pos_y = i;
+				map->player.dir = line[j];
 			}
 			j++;
 		}
@@ -124,7 +126,7 @@ void	create_map(char *path_map, t_map *map)
 		return ;
 	get_size(path_map, map);
 	write_map(path_map, map);
-	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->p_dir);
+	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->player.dir);
 	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map->f_rgb[0], map->f_rgb[1], map->f_rgb[2], map->c_rgb[0], map->c_rgb[1], map->c_rgb[2]);
 	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map->img[0].path, map->img[1].path, map->img[2].path, map->img[3].path);
 	print_map(map);

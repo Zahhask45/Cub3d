@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/22 15:23:37 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/09/28 15:05:05 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ void	init_rgb(char *line, t_map *map)
 		}
 		j++;
 	}
+	
+	int				r;
+	int				g;
+	int				b;
+
+	r = map->c_rgb[0];
+	g = map->c_rgb[1];
+	b = map->c_rgb[2];
+	map->c_hex = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+	r = map->f_rgb[0];
+	g = map->f_rgb[1];
+	b = map->f_rgb[2];
+	map->f_hex = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
 void	loop_textures(char *line, t_map *map, char c)
@@ -54,13 +67,13 @@ void	loop_textures(char *line, t_map *map, char c)
 			while (line[i] && !ft_iswspace(line[i]))
 				i++;
 			if (c == 'N')
-				map->img[0].path = ft_substr(line, start, i - start);
+				map->img[NORTH].path = ft_substr(line, start, i - start);
 			else if (c == 'S')
-				map->img[1].path = ft_substr(line, start, i - start);
+				map->img[SOUTH].path = ft_substr(line, start, i - start);
 			else if (c == 'W')
-				map->img[2].path = ft_substr(line, start, i - start);
+				map->img[WEST].path = ft_substr(line, start, i - start);
 			else
-				map->img[3].path = ft_substr(line, start, i - start);
+				map->img[EAST].path = ft_substr(line, start, i - start);
 		}
 		i++;
 	}
