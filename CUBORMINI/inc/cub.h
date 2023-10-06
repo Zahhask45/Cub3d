@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/30 14:49:41 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:12:19 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # define HEIGHT 1080
 # define WIDTH 1920
-# define NORTH 0
-# define SOUTH 1
-# define WEST 2
-# define EAST 3
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 # include "libft.h"
 # include "mlx.h"
@@ -26,6 +29,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
 
 typedef struct s_img
@@ -80,8 +84,8 @@ typedef struct s_text
 {
 	int		size;
 	int		index;
-	int		step;
-	int		pos;
+	double	step;
+	double	pos;
 	int		x;
 	int		y;
 }			t_text;
@@ -102,6 +106,8 @@ typedef struct s_map
 	int			c_rgb[3];
 	int			c_hex;
 	int			f_hex;
+
+	
 	int			text_index;
 	int			text_x;
 	int			text_y;
@@ -121,7 +127,6 @@ typedef struct s_map
 }			t_map;
 
 //* UTILS
-
 int		is_valid_char(char c, char *play);
 void	*ft_memalloc(size_t size);
 int		ft_iswspace(char c);
@@ -134,9 +139,28 @@ int		create_trgb(int t, int red, int green, int blue);
 void	init_textures(t_map *map, int fd);
 void	make_windows(t_map *map);
 int		close_win(t_map *map);
-int		keyhooks(int key, t_map *map);
+int		keyhooks_press(int key, t_map *map);
 
 //* MINIMAP
 void	init_minimap(t_map *map); 
+
+
+//* INIT INFO
+void	init_clean_img(t_img *img);
+void	init_textinfo(t_text *texture);
+void	init_colors(t_map *map);
+void	init_player(t_player *player);
+void	init_all(t_map *map);
+
+//* INIT TEXTURES
+void	init_texture_img(t_map *map, t_img *image, char *path);
+void	start_text(t_map *map);
+
+//* INPUT
+int		keyhooks_release(int key, t_map *map);
+void	input(t_map *map);
+
+//* RENDER
+int		render(t_map *map);
 
 #endif

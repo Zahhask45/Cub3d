@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/28 14:30:35 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/06 14:01:05 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	print_map(t_map *map)
 			ft_putchar_fd(map->map[i][j], 0);
 			j++;
 		}
-		ft_putchar_fd('\n', 0);
 		i++;
 	}
+	ft_putchar_fd('\n', 0);
 }
 
 void	get_size(char *path_map, t_map *map)
@@ -51,8 +51,8 @@ void	get_size(char *path_map, t_map *map)
 		if (line[0] != '\n')
 		{
 			map->n_cols = ft_strlen(line);
-			if (line[map->n_cols - 1] == '\n')
-				map->n_cols--;
+			/* if (line[map->n_cols - 1] == '\n')
+				map->n_cols--; */
 			len++;
 		}
 		free(line);
@@ -105,8 +105,8 @@ void	write_map(char *path_map, t_map *map)
 			{
 				map->p_pos[0] = j;
 				map->p_pos[1] = i;
-				map->player.pos_x = j;
-				map->player.pos_y = i;
+				map->player.pos_x = j + 0.5;
+				map->player.pos_y = i + 0.5;
 				map->player.dir = line[j];
 			}
 			j++;

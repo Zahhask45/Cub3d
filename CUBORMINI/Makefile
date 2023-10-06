@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/09/22 16:57:15 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/10/06 14:17:50 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,24 +54,65 @@ SRC_DIR		=	./src/
 OBJ_DIR		=	./obj/
 
 
-
+#*--------------------------------
+#* WINDOW DIRECTORY AND FILES
+#*--------------------------------
 WIN_DIR		=	window/
-
 WINDOW		=	window.c \
 				win_utils.c \
 				init_minimap.c \
+#*--------------------------------
 
+
+
+#*--------------------------------
+#* MAP DIRECTORY AND FILES
+#*--------------------------------
 MAP_DIR		=	map_valid/
-
 MAP			=	create_map.c \
 				init_textures.c \
+#*--------------------------------
+
+
+#*--------------------------------
+#* INIT DIRECTORY AND FILES
+#*--------------------------------
+INIT_DIR		=	init/
+INIT			=	init.c \
+					init_textures.c \
+#*--------------------------------
+
+
+#*--------------------------------
+#* INPUT DIRECTORY AND FILES
+#*--------------------------------
+INPUT_DIR		=	input/
+INPUT			=	input.c \
+#*--------------------------------
+
+
+#*--------------------------------
+#* RENDER DIRECTORY AND FILES
+#*--------------------------------
+RENDER_DIR		=	render/
+RENDER			=	render.c \
+#*--------------------------------
+
+
+
 
 SRC			=	$(addprefix $(SRC_DIR), $(SOURCES))
 WIN_SRC		=	$(addprefix $(WIN_DIR), $(WINDOW))
 MAP_SRC		=	$(addprefix $(MAP_DIR), $(MAP))
+INIT_SRC	=	$(addprefix $(INIT_DIR), $(INIT))
+INPUT_SRC	=	$(addprefix $(INPUT_DIR), $(INPUT))
+RENDER_SRC	=	$(addprefix $(RENDER_DIR), $(RENDER))
 
 SOURCES		=	$(WIN_SRC) \
 				$(MAP_SRC) \
+				$(INIT_SRC) \
+				$(INPUT_SRC) \
+				$(RENDER_SRC) \
 				main.c \
 				utils.c \
 
@@ -104,8 +145,11 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(OBJ_DIR):
 				mkdir -p $(OBJ_DIR)
-				mkdir -p $@/window
-				mkdir -p $@/map_valid
+				mkdir -p $@/$(WIN_DIR)
+				mkdir -p $@/$(MAP_DIR)
+				mkdir -p $@/$(INIT_DIR)
+				mkdir -p $@/$(INPUT_DIR)
+				mkdir -p $@/$(RENDER_DIR)
 
 clean:
 	$(RM) $(OBJ_DIR) $(OBJ_PATH_BONUS)

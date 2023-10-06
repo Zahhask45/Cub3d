@@ -6,20 +6,11 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/04 15:33:45 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:58:27 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-int	close_win(t_map *map)
-{
-	//mlx_destroy_image(map->mlx, map->mlx_win);
-	mlx_destroy_window(map->mlx, map->mlx_win);
-	mlx_destroy_display(map->mlx);
-	free(map->mlx);
-	exit(EXIT_SUCCESS);
-}
 
 /* void	ft_init_img(t_map *map)
 {
@@ -209,11 +200,11 @@ void	calculate_line(t_ray *ray, t_player *player)
 		ray->wall_dis = (ray->sid_dis_x - ray->delta_dis_x);
 	else
 		ray->wall_dis = (ray->sid_dis_y - ray->delta_dis_y);
-	printf("Wall Dist: %f\n", ray->wall_dis);
+	/* printf("Wall Dist: %f\n", ray->wall_dis);
 	printf("SIDE DIST X: %f\n", ray->sid_dis_x);
 	printf("SIDE DIST Y: %f\n", ray->sid_dis_y);
 	printf("SIDE DELTA DIST X: %f\n", ray->delta_dis_x);
-	printf("SIDE DELTA DIST Y: %f\n", ray->delta_dis_y);
+	printf("SIDE DELTA DIST Y: %f\n", ray->delta_dis_y); */
 	ray->line_height = (int)(HEIGHT / ray->wall_dis);
 	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
@@ -255,7 +246,7 @@ void	update_text(t_map *map, t_ray *ray, t_text *texture, int x)
 	texture->x = (int)(ray->wall_x * texture->size);
 	if ((ray->side == 0 && ray->dir_x < 0)
 		|| (ray->side == 1 && ray->dir_y > 0))
-		texture->x = texture->size = texture->x - 1;
+		texture->x = texture->size - texture->x - 1;
 	texture->step = 1.0 * texture->size / ray->line_height;
 	texture->pos = (ray->draw_start - HEIGHT / 2
 				+ ray->line_height / 2) * texture->step;
@@ -280,7 +271,6 @@ int	ray(t_player *player, t_map *map)
 
 	x = 0;
 	ray = map->ray;
-	printf("%d\n", map->texture.size);
 	while (x < WIDTH)
 	{
 		init_ray_info(x, &ray, player);
@@ -318,12 +308,8 @@ void	set_image(t_img *image, int x, int y, int colour)
 
 void	set_frame(t_map *map, t_img *image, int x, int y)
 {
-	int	i;
-
-	i = 0;
 	if (map->text_pix[y][x] > 0)
-		//set_image(image, x, y, map->text_pix[y][x]);
-		(void)i;
+		set_image(image, x, y, map->text_pix[y][x]);
 	else if (y < HEIGHT / 2)
 			set_image(image, x, y, map->c_hex);
 	else if (y < HEIGHT - 1)
@@ -366,67 +352,15 @@ void	render_images(t_map *map)
 	raycast_render(map);
 }
 
-void	init_texture_img(t_map *map, t_img *image, char *path)
-{
-	image->mlx_img = NULL;
-	image->addr = NULL;
-	image->bits_per_pixel = 0;
-	image->line_length = 0;
-	image->endian = 0;
-
-	image->mlx_img = mlx_xpm_file_to_image(map->mlx, path, &map->texture.size,
-			&map->texture.size);
-	image->addr = (int *)mlx_get_data_addr(image->mlx_img, &image->bits_per_pixel, 
-			&image->line_length, &image->endian);
-	return ;
-}
-
-int	*xpm_to_img(t_map *map, char *path)
-{
-	t_img	temp;
-	int		*buf;
-	int		x;
-	int		y;
-
-	init_texture_img(map, &temp, path);
-	buf = ft_memalloc(1 * (sizeof * buf * map->texture.size * map->texture.size));
-	y = 0;
-	while (y < map->texture.size)
-	{
-		x = 0;
-		while (x < map->texture.size)
-		{
-			buf[y * map->texture.size + x] = temp.addr[y * map->texture.size + x];
-			x++;
-		}
-		y++;
-	}
-	mlx_destroy_image(map->mlx, temp.mlx_img);
-	return (buf);
-}
-
-void	start_text(t_map *map)
-{
-	map->text = ft_memalloc(5 * sizeof *map->text);
-	map->text[NORTH] = xpm_to_img(map, map->img[NORTH].path);
-	map->text[SOUTH] = xpm_to_img(map, map->img[SOUTH].path);
-	map->text[WEST] = xpm_to_img(map, map->img[WEST].path);
-	map->text[EAST] = xpm_to_img(map, map->img[EAST].path);
-}
-
 void	make_windows(t_map *map)
 {
 	map->mlx = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx, WIDTH, HEIGHT, "BANANA");
-	/* mlx_mouse_move(map->mlx, map->img, WIDTH / 2,
-			HEIGHT / 2); */
 	start_text(map);
 	render_images(map);
-
+	input(map);
 	//ft_init_img(map);
 	//init_minimap(map);
 	//mlx_loop_hook(map->mlx, &render, map);
-	/* mlx_hook(map->mlx_win, 2, 1L << 0, keyhooks, map);
-	mlx_hook(map->mlx_win, 17, 0, close_win, map); */
 	mlx_loop(map->mlx);
 }
