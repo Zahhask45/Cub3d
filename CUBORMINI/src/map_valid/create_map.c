@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/25 15:59:09 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:00:33 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	create_map(char *path_map, t_map *map)
 	map->n_lines = 0;
 	map->f_rgb[0] = -1;
 	map->c_rgb[0] = -1;
+	map->p_dir = 'X';
 	
 	if (valid_path(path_map) == EXIT_FAILURE)
 		exit(1);

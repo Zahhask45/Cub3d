@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/25 16:00:17 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:56:15 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	init_textures(t_map *map, int fd)
 		line = get_next_line(fd);
 		if (line[0] == '1' || line[0] == '0')
 			error_msg("Map can't come first.");
-		while (ft_iswspace(j))
+		while (ft_iswspace(line[j]))
 			j++;
 		if (line[j] != '\n')
 			i++;

@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/09/25 16:04:11 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:02:09 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	validate_map(t_map *map)
 	if (map->f_rgb[0] == -1 || map->c_rgb[0] == -1)
 		error_msg("Missing RGB");
 	valid_textures(map);
+	if (map->p_dir == 'X')
+		error_msg("Missig player !");
 }
 
-// TODO: map_too_small.cub; player_none; textures_missing; textures_not_xpm;
