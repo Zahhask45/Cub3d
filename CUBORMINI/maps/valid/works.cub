@@ -1,13 +1,13 @@
-   WE                            ../Textures/west.xpm
-NO      ../Textures/north.xpm
+   WE                            Textures/west.xpm
+NO      Textures/north.xpm
 
 
 
-SO ../Textures/south.xpm
+SO Textures/south.xpm
 
 F      17,    38,     64
 
-EA ../Textures/east.xpm
+EA Textures/east.xpm
 C 218, 234, 235
 
 1111111111111111111111111

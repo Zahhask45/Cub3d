@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 15:13:33 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:02:07 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,20 @@ void	error_msg(char *msg)
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
 	exit(1);
+}
+
+int	last_char(char *str, char c)
+{
+	int	i;
+	int	pos;
+
+	i = 0;
+	pos = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			pos = i;
+		i++;
+	}
+	return (pos + 1);
 }

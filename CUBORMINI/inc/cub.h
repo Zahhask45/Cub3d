@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 15:16:58 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:58:56 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int		ft_iswspace(char c);
 int		ft_isvalidc(char c);
 void	print_map(t_map *map);
 void	error_msg(char *msg);
+int		last_char(char *str, char c);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);

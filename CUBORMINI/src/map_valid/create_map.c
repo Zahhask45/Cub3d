@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 15:16:32 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:03:43 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	get_size(char *path_map, t_map *map)
 		}
 		if (line[0] != '\n')
 		{
-			if (map->n_cols < (int)ft_strlen(line))
-				map->n_cols = ft_strlen(line);
+			if (map->n_cols < (int)last_char(line, '1'))
+				map->n_cols = last_char(line, '1');
 			if (line[map->n_cols - 1] == '\n')
 				map->n_cols--;
 			len++;
