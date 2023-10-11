@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/08 16:57:09 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:16:58 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct s_map
 
 
 	int			p_pos[2];
-	char		p_dir;
 
 
 	int			**text_pix;
@@ -142,6 +141,9 @@ typedef struct s_map
 int		is_valid_char(char c, char *play);
 void	*ft_memalloc(size_t size);
 int		ft_iswspace(char c);
+int		ft_isvalidc(char c);
+void	print_map(t_map *map);
+void	error_msg(char *msg);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);
@@ -178,5 +180,8 @@ int		render(t_map *map);
 
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
+
+//* CHECK_VALID
+void	validate_map(t_map *map);
 
 #endif

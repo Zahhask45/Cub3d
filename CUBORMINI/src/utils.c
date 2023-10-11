@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/09/22 17:26:32 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:13:33 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,41 @@ void	*ft_memalloc(size_t size)
 
 int	ft_iswspace(char c)
 {
-	if (c < 33 || c > 126)
+	if (c == ' ' || c == '\t')
 		return (1);
 	return (0);
+}
+
+int	ft_isvalidc(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E'
+		|| c == 'F' || c == 'C' || c == '1' || ft_iswspace(c))
+		return (1);
+	return (0);
+}
+
+void	print_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->n_lines)
+	{
+		j = 0;
+		while (j < (int)ft_strlen(map->map[i]))
+		{
+			ft_putchar_fd(map->map[i][j], 0);
+			j++;
+		}
+		ft_putchar_fd('\n', 0);
+		i++;
+	}
+}
+void	error_msg(char *msg)
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+	exit(1);
 }
