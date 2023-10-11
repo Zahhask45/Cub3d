@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 18:03:43 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:29:58 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	valid_map(char *path_map)
 void	get_size(char *path_map, t_map *map)
 {
 	int		len;
+	int		i;
 	char	*line;
 	int		fd;
 
@@ -54,21 +55,26 @@ void	get_size(char *path_map, t_map *map)
 	{
 		line = get_next_line(fd);
 		if (!line)
+			break ;
+		i = 0;
+		while (line[i] && ft_iswspace(line[i]))
+			i++;
+		if (line[i] && (line[i] == 'N' || line[i] == 'S'
+				|| line[i] == 'W' || line[i] == 'E' || line[i] == 'F'
+				|| line[i] == 'C' || line[i] == '\n'))
 		{
-			close(fd);
-			map->n_lines = len - 6;
-			return ;
+			free(line);
+			continue ;
 		}
-		if (line[0] != '\n')
+		if (line[i] == '1')
 		{
-			if (map->n_cols < (int)last_char(line, '1'))
+			if (map->n_cols < last_char(line, '1'))
 				map->n_cols = last_char(line, '1');
-			if (line[map->n_cols - 1] == '\n')
-				map->n_cols--;
 			len++;
 		}
 		free(line);
 	}
+	map->n_lines = len;
 }
 
 int	valid_path(char *path_map)
@@ -137,7 +143,7 @@ void	create_map(char *path_map, t_map *map)
 	map->f_rgb[0] = -1;
 	map->c_rgb[0] = -1;
 	map->player.dir = 'X';
-	
+
 	if (valid_path(path_map) == EXIT_FAILURE)
 		exit(1);
 	if (!valid_map(path_map))
