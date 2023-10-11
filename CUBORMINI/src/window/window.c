@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/06 13:58:27 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:00:06 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,6 +350,7 @@ void	raycast_render(t_map *map)
 void	render_images(t_map *map)
 {
 	raycast_render(map);
+	init_minimap(map);
 }
 
 void	make_windows(t_map *map)
@@ -360,7 +361,6 @@ void	make_windows(t_map *map)
 	render_images(map);
 	input(map);
 	//ft_init_img(map);
-	//init_minimap(map);
 	//mlx_loop_hook(map->mlx, &render, map);
 	mlx_loop(map->mlx);
 }

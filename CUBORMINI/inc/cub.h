@@ -6,15 +6,16 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/06 14:12:19 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/08 16:57:09 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# define HEIGHT 1080
+# define HEIGHT 1000
 # define WIDTH 1920
+
 enum e_texture_index
 {
 	NORTH = 0,
@@ -90,6 +91,17 @@ typedef struct s_text
 	int		y;
 }			t_text;
 
+typedef struct s_mini
+{
+	char	**map;
+	t_img	*img;
+	int		size;
+	int		off_x;
+	int		off_y;
+	int		view_dis; // 6 Tiles from where the player is
+	int		tile_size; // 6 pixels
+
+}			t_mini;
 
 
 typedef struct s_map
@@ -162,5 +174,9 @@ void	input(t_map *map);
 
 //* RENDER
 int		render(t_map *map);
+
+
+//! NOT THE REAL PLACE TO PUT THIS ONE
+void	set_image(t_img *image, int x, int y, int colour);
 
 #endif

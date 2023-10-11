@@ -6,75 +6,164 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:29:15 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/02 15:46:06 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/08 17:10:26 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-/* void	minimap_pix(t_map *map, int x, int y, int colour)
-{
-	char	*pix;
-
-	if (y < 0 || y > HEIGHT - 1 || x < 0
-		|| x > WIDTH - 1)
-		return ;
-	pix = (map->minimap.addr + (y * map->minimap.line_length
-				+ x * (map->minimap.bits_per_pixel / 8)));
-	*(int *)pix = colour;
-}
-
-void	draw_minimap(t_map *map, int x, int y, int colour)
+void	set_minimap_pix(t_mini *minimap, int x, int y, int colour)
 {
 	int	i;
 	int j;
 
 	i = 0;
-	j = 0;
-	while (i < 7)
+	while (i < minimap->size)
 	{
 		j = 0;
-		while (j < 7)
+		while (j < minimap->size)
 		{
-			minimap_pix(map, x + j, y + i, colour);
+			set_image(minimap->img, x + j, y + i, colour);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	make_minimap(t_map *map)
-{
-	int	j;
-	int	i;
 
-	i = 0;
-	j = 0;
-	while (map->map[i])
+void	put_tile(t_mini *minimap, int x, int y)
+{
+	if (minimap->map[y][x] == '1')
+		set_minimap_pix(minimap, x * minimap->tile_size,
+			 y * minimap->tile_size, 0x000000);
+	else if (minimap->map[y][x] == '0')
+		set_minimap_pix(minimap, x * minimap->tile_size,
+			 y * minimap->tile_size, 0xE6E6E6);
+	else if (minimap->map[y][x] == 'P')
+		set_minimap_pix(minimap, x * minimap->tile_size,
+			 y * minimap->tile_size, 0xEEEE20);
+	else if (minimap->map[y][x] == ' ')
+		set_minimap_pix(minimap, x * minimap->tile_size,
+			 y * minimap->tile_size, 0x050505);
+}
+
+
+void	draw_minimap(t_mini *minimap)
+{
+	int	y;
+	int x;
+
+	y = 0;
+	while (y < minimap->size)
 	{
-		j = 0;
-		while (map->map[i][j])
+		x = 0;
+		while (x < minimap->size)
 		{
-			if (map->map[i][j] == '1')
-				draw_minimap(map, j * 7, i * 7, 0x000000);
-			else if (map->map[i][j] == '0')
-				draw_minimap(map, j * 7, i * 7, create_trgb(0, map->c_rgb[0],
-						map->c_rgb[1], map->c_rgb[2]));
-			else if (is_valid_char(map->map[i][j], "NSEW"))
-				draw_minimap(map, j * 7, i * 7, 0xEEEE20);
-			else
-				draw_minimap(map, j * 7, i * 7, 0x050505);
-			j++;
+			if (!minimap->map[y] || !minimap->map[y][x]
+				|| minimap->map[y][x] == '\0')
+				break ;
+			put_tile(minimap, x, y);
+			x++;
 		}
-		i++;
+		y++;
 	}
+}
+
+int	get_mini_offset(t_mini *minimap, int map_size, int pos)
+{
+	if (pos > minimap->view_dis && map_size - pos > minimap->view_dis + 1)
+		return (pos - minimap->view_dis);
+	if (pos > minimap->view_dis && map_size - pos <= minimap->view_dis + 1)
+		return (map_size - minimap->view_dis);
+	return (0);
+}
+
+bool	valid_map_coord(int coord, int size)
+{
+	if (coord < size)
+		return (true);
+	return (false);
+}
+
+char	*minimap_line(t_map *map, t_mini *minimap, int y)
+{
+	char	*line;
+	int		x;
+	
+	line = ft_memalloc((minimap->size + 1) * sizeof *line);
+	if (!line)
+		return (NULL);
+	x = 0;
+	while (x < minimap->size && x < map->n_cols)
+	{
+		if (!valid_map_coord(y + minimap->off_y, map->n_lines)
+			|| !valid_map_coord(x + minimap->off_x, map->n_cols))
+			line[x] = '\0';
+		else if ((int)map->player.pos_x == (x + minimap->off_x)
+			&& (int)map->player.pos_y == (y + minimap->off_y))
+			line[x] = 'P';
+		else if (map->map[y + minimap->off_y][x + minimap->off_x] == '1')
+			line[x] = '1';
+		else if (map->map[y + minimap->off_y][x + minimap->off_x] == '0')
+			line[x] = '0';
+		else
+			line[x] = '\0';
+		x++;
+	}
+	printf("WOW: %d\n", minimap->size);
+	return (line);
+}
+
+char	**gen_minimap(t_map *map, t_mini *minimap)
+{
+	int		y;
+	char	**mini;
+
+	mini = ft_memalloc((minimap->size + 1) * sizeof *mini);
+	y = 0;
+	while (y < minimap->size && y < map->n_lines)
+	{
+		mini[y] = minimap_line(map, minimap, y);
+		y++;
+	}
+	return (mini);
+}
+
+//! Put in another file, in the init file
+void	init_img(t_map *map, t_img *image, int width, int height)
+{
+	init_clean_img(image);
+	image->mlx_img = mlx_new_image(map->mlx, width, height);
+	image->addr = (int *)mlx_get_data_addr(image->mlx_img, &image->bits_per_pixel, 
+			&image->line_length, &image->endian);
+	return ;
+}
+
+void	render_minimap(t_map *map, t_mini *minimap)
+{
+	int	img_size;
+
+	img_size = 128 + minimap->tile_size;
+	init_img(map, &map->minimap, img_size, img_size);
+	draw_minimap(minimap);
+	mlx_put_image_to_window(map->mlx, map->mlx_win, map->minimap.mlx_img,
+		minimap->tile_size, HEIGHT - (128 + (minimap->tile_size * 2)));
+	mlx_destroy_image(map->mlx, map->minimap.mlx_img);
 }
 
 void	init_minimap(t_map *map)
 {
-	map->minimap.mlx_img = mlx_new_image(map->mlx, map->n_cols * 7, map->n_lines * 7);
-	map->minimap.addr = mlx_get_data_addr(map->minimap.mlx_img, 
-				&map->minimap.bits_per_pixel, &map->minimap.line_length, &map->minimap.endian);
-	make_minimap(map);
-} */
+	t_mini	minimap;
+
+	minimap.map = NULL;
+	minimap.img = &map->minimap;
+	minimap.view_dis = 6;
+	minimap.size = (2 * minimap.view_dis) + 1;
+	minimap.tile_size = 128 / (2 * minimap.view_dis);
+	minimap.off_x = get_mini_offset(&minimap, map->n_cols, (int)map->player.pos_x);
+	minimap.off_y = get_mini_offset(&minimap, map->n_lines, (int)map->player.pos_y);
+	minimap.map = gen_minimap(map, &minimap);
+	render_minimap(map, &minimap);
+}
+
 
