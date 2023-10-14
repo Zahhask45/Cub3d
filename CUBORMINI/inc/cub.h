@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/14 12:58:30 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:08:14 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 # define CUB_H
 
 # define HEIGHT 1000
-# define WIDTH 1920
+# define WIDTH 960
 
 enum e_texture_index
 {
 	NORTH = 0,
 	SOUTH = 1,
 	EAST = 2,
-	WEST = 3
+	WEST = 3,
+	DOOR = 4
 };
 
 # include "libft.h"
@@ -108,7 +109,7 @@ typedef struct s_map
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_img		img[5];
+	t_img		img[6];
 	t_img		minimap;
 
 	char		**map;

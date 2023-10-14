@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 17:31:12 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:50:43 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,29 @@
 
 bool	is_valid(t_map *map, double x, double y)
 {
-	if (x < 0.75 || x >= map->n_cols - 1.75)
+	int inty;
+	int	intx;
+
+	inty = (int)y;
+	intx = (int)x;
+	if (y < 1.5)
+		inty = 0;
+	if (x < 1.5)
+		intx = 0;
+	/* printf("===========================\n");
+	printf("INT Y: %d\n", inty);
+	printf("FLOAT Y: %f\n", y);
+	printf("INT X: %d\n", intx);
+	printf("FLOAT X: %f\n", x);
+	printf("MAP VALUE: %c\n", map->map[inty][intx]);
+	printf("===========================\n"); */
+	if (x < 0.75 || x >= map->n_cols - 1.25)
 		return (false);
 	if (y < 0.75 || y >= map->n_lines - 1.25)
 		return (false);
-	if (map->map[(int)y][(int)x] != '0' && map->map[(int)y][(int)x] != map->player.dir)
-		return (false);
-	return (true);
+	if (map->map[inty][intx] == '0')
+		return (true);
+	return (false);
 }
 
 int validate(t_map *map, double new_x, double new_y)
@@ -48,11 +64,11 @@ int	forward(t_map *map)
 	double	new_y;
 
 	new_x = map->player.pos_x + map->player.dir_x * 0.1; //* 0.1 MOVESPEED
-	printf("NEW X VALUE: %f\n", new_x);
-	printf("POS X VALUE: %f\n", map->player.pos_x);
+	/* printf("NEW X VALUE: %f\n", new_x);
+	printf("POS X VALUE: %f\n", map->player.pos_x); */
 	new_y = map->player.pos_y + map->player.dir_y * 0.1; //* 0.1 MOVESPEED
-	printf("NEW Y VALUE: %f\n", new_y);
-	printf("POS Y VALUE: %f\n", map->player.pos_y);
+	/* printf("NEW Y VALUE: %f\n", new_y);
+	printf("POS Y VALUE: %f\n", map->player.pos_y); */
 	return (validate(map, new_x, new_y));
 }
 

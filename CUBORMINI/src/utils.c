@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:31:20 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 18:02:07 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:56:35 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_iswspace(char c)
 int	ft_isvalidc(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E'
-		|| c == 'F' || c == 'C' || c == '1' || ft_iswspace(c))
+		|| c == 'F' || c == 'C' || c == 'D' || c == '1' || ft_iswspace(c))
 		return (1);
 	return (0);
 }

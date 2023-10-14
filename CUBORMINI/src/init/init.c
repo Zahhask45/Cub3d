@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:42:55 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:12:22 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:03:35 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_textinfo(t_text *texture)
 	texture->step = 0.0;
 	texture->x = 0;
 	texture->y = 0;
-	texture->size = 32; //* OR 64
+	texture->size = 32;
 }
 
 void	init_colors(t_map *map)
@@ -75,6 +75,6 @@ void	init_all(t_map *map)
 	init_clean_img(&map->minimap);
 	map->text = NULL;
 	map->text_pix = NULL;
-	while (++i < 5)
+	while (++i < 6)
 		init_clean_img(&map->img[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:50:54 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:53:22 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 14:10:29 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	start_text(t_map *map)
 	map->text[SOUTH] = xpm_to_img(map, map->img[SOUTH].path);
 	map->text[WEST] = xpm_to_img(map, map->img[WEST].path);
 	map->text[EAST] = xpm_to_img(map, map->img[EAST].path);
+	map->text[DOOR] = xpm_to_img(map, map->img[DOOR].path);
 }
 
 

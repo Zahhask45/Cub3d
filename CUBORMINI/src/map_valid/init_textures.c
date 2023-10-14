@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 15:35:13 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:17:15 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 				map->img[SOUTH].path = ft_substr(line, start, i - start);
 			else if (c == 'W')
 				map->img[WEST].path = ft_substr(line, start, i - start);
-			else
+			else if (c == 'E')
 				map->img[EAST].path = ft_substr(line, start, i - start);
+			else if (c == 'D')
+				map->img[DOOR].path = ft_substr(line, start, i - start);
 			break;
 		}
 		i++;
@@ -86,7 +88,7 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 
 void	get_textures(char *line, t_map *map, char c, int j)
 {
-	if (c == 'N' || c == 'S')
+	if (c == 'N' || c == 'S' || c == 'D')
 	{
 		if (line[j + 1] == 'O')
 			loop_textures(line, map, c, j);
@@ -104,7 +106,7 @@ void	init_textures(t_map *map, int fd)
 	char	*line;
 
 	i = 0;
-	while (i < 6)
+	while (i < 7)
 	{
 		j = 0;
 		line = get_next_line(fd);
@@ -119,7 +121,7 @@ void	init_textures(t_map *map, int fd)
 		if (line[j] == 'C' || line[j] == 'F')
 			init_rgb(line, map, j);
 		else if (line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W')
+			|| line[j] == 'E' || line[j] == 'W' || line[j] == 'D')
 			get_textures(line, map, line[j], j);
 		free(line);
 	}

@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:29:15 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/08 17:10:26 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:03:45 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*minimap_line(t_map *map, t_mini *minimap, int y)
 			line[x] = '\0';
 		x++;
 	}
-	printf("WOW: %d\n", minimap->size);
+	//printf("WOW: %d\n", minimap->size);
 	return (line);
 }
 
