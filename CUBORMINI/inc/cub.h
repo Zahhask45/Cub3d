@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 17:58:56 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/14 12:58:30 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,11 +176,13 @@ int		keyhooks_release(int key, t_map *map);
 void	input(t_map *map);
 
 //* RENDER
+void	render_images(t_map *map);
 int		render(t_map *map);
 
 
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
+
 
 //* CHECK_VALID
 void	validate_map(t_map *map);
