@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:24:23 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 16:50:54 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:09:15 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	input(t_map *map)
 {
 	mlx_hook(map->mlx_win, 17, 0, close_win, map);
 	mlx_hook(map->mlx_win, 2, 1L << 0, keyhooks_press, map);
-	mlx_hook(map->mlx_win, 3, 1L << 0, keyhooks_release, map);
+	mlx_hook(map->mlx_win, 3, 1L << 1, keyhooks_release, map);
 	mlx_hook(map->mlx_win, 6, 1L << 6, mouse_handler, map);
 }
