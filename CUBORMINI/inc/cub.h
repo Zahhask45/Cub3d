@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 14:29:28 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:13:27 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define HEIGHT 1000
 # define WIDTH 1920
 # define MOVESPEED 0.1
+# define ROTATION_SPEED 0.1
 
 enum e_texture_index
 {
@@ -183,6 +184,7 @@ int		render(t_map *map);
 
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
+int		rotate_player(t_map *map);
 
 
 //* CHECK_VALID

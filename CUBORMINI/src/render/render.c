@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 14:46:22 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:11:59 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,19 @@ int	right(t_map *map)
 
 int	move_player(t_map *map)
 {
-	int moved;
+	int	moved;
 
 	moved = 0;
 	if (map->player.move_y == 1)
 		moved += forward(map);
- 	if (map->player.move_y == -1)
+	if (map->player.move_y == -1)
 		moved += backwards(map);
 	if (map->player.move_x == -1)
 		moved += left(map);
 	if (map->player.move_x == 1)
 		moved += right(map);
+	if (map->player.rotate != 0)
+		moved += rotate_player(map);
 
 	return (moved);
 }
