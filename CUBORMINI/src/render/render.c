@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 17:31:12 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:46:22 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,43 @@ int validate(t_map *map, double new_x, double new_y)
 	return (moved);
 }
 
-
 int	forward(t_map *map)
 {
 	double	new_x;
 	double	new_y;
 
-	new_x = map->player.pos_x + map->player.dir_x * 0.1; //* 0.1 MOVESPEED
-	printf("NEW X VALUE: %f\n", new_x);
-	printf("POS X VALUE: %f\n", map->player.pos_x);
-	new_y = map->player.pos_y + map->player.dir_y * 0.1; //* 0.1 MOVESPEED
-	printf("NEW Y VALUE: %f\n", new_y);
-	printf("POS Y VALUE: %f\n", map->player.pos_y);
+	new_x = map->player.pos_x + map->player.dir_x * MOVESPEED;
+	new_y = map->player.pos_y + map->player.dir_y * MOVESPEED;
+	return (validate(map, new_x, new_y));
+}
+
+int	backwards(t_map *map)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = map->player.pos_x - map->player.dir_x * MOVESPEED;
+	new_y = map->player.pos_y - map->player.dir_y * MOVESPEED;
+	return (validate(map, new_x, new_y));
+}
+
+int	left(t_map *map)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = map->player.pos_x + map->player.dir_y * MOVESPEED;
+	new_y = map->player.pos_y - map->player.dir_x * MOVESPEED;
+	return (validate(map, new_x, new_y));
+}
+
+int	right(t_map *map)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = map->player.pos_x - map->player.dir_y * MOVESPEED;
+	new_y = map->player.pos_y + map->player.dir_x * MOVESPEED;
 	return (validate(map, new_x, new_y));
 }
 
@@ -63,10 +88,12 @@ int	move_player(t_map *map)
 	moved = 0;
 	if (map->player.move_y == 1)
 		moved += forward(map);
-/* 	if (map->player.move_y == -1)
+ 	if (map->player.move_y == -1)
+		moved += backwards(map);
 	if (map->player.move_x == -1)
+		moved += left(map);
 	if (map->player.move_x == 1)
-	if (map->player.move_y != 0) */
+		moved += right(map);
 
 	return (moved);
 }

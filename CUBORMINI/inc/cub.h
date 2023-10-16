@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/14 12:58:30 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:29:28 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define HEIGHT 1000
 # define WIDTH 1920
+# define MOVESPEED 0.1
 
 enum e_texture_index
 {
