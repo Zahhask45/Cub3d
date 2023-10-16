@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:29:15 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 14:28:53 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:52:45 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	set_minimap_pix(t_mini *minimap, int x, int y, int colour)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (i < minimap->size)
@@ -35,16 +35,16 @@ void	put_tile(t_mini *minimap, int x, int y)
 {
 	if (minimap->map[y][x] == '1')
 		set_minimap_pix(minimap, x * minimap->tile_size,
-			 y * minimap->tile_size, 0x000000);
+			y * minimap->tile_size, 0x000000);
 	else if (minimap->map[y][x] == '0')
 		set_minimap_pix(minimap, x * minimap->tile_size,
-			 y * minimap->tile_size, 0xE6E6E6);
+			y * minimap->tile_size, 0xE6E6E6);
 	else if (minimap->map[y][x] == 'P')
 		set_minimap_pix(minimap, x * minimap->tile_size,
-			 y * minimap->tile_size, 0xEEEE20);
+			y * minimap->tile_size, 0xEEEE20);
 	else if (minimap->map[y][x] == ' ')
 		set_minimap_pix(minimap, x * minimap->tile_size,
-			 y * minimap->tile_size, 0x050505);
+			y * minimap->tile_size, 0x050505);
 }
 
 
@@ -89,7 +89,7 @@ char	*minimap_line(t_map *map, t_mini *minimap, int y)
 {
 	char	*line;
 	int		x;
-	
+
 	line = ft_memalloc((minimap->size + 1) * sizeof *line);
 	if (!line)
 		return (NULL);
@@ -119,7 +119,7 @@ char	**gen_minimap(t_map *map, t_mini *minimap)
 	int		y;
 	char	**mini;
 
-	mini = ft_memalloc((minimap->size + 1) * sizeof *mini);
+	mini = ft_memalloc((minimap->size + 1) * sizeof * mini);
 	y = 0;
 	while (y < minimap->size && y < map->n_lines)
 	{
@@ -134,8 +134,8 @@ void	init_img(t_map *map, t_img *image, int width, int height)
 {
 	init_clean_img(image);
 	image->mlx_img = mlx_new_image(map->mlx, width, height);
-	image->addr = (int *)mlx_get_data_addr(image->mlx_img, &image->bits_per_pixel, 
-			&image->line_length, &image->endian);
+	image->addr = (int *)mlx_get_data_addr(image->mlx_img,
+			&image->bits_per_pixel, &image->line_length, &image->endian);
 	return ;
 }
 
@@ -160,8 +160,10 @@ void	init_minimap(t_map *map)
 	minimap.view_dis = 6;
 	minimap.size = (2 * minimap.view_dis) + 1;
 	minimap.tile_size = 128 / (2 * minimap.view_dis);
-	minimap.off_x = get_mini_offset(&minimap, map->n_cols, (int)map->player.pos_x);
-	minimap.off_y = get_mini_offset(&minimap, map->n_lines, (int)map->player.pos_y);
+	minimap.off_x = get_mini_offset(&minimap, map->n_cols,
+			(int)map->player.pos_x);
+	minimap.off_y = get_mini_offset(&minimap, map->n_lines,
+			(int)map->player.pos_y);
 	minimap.map = gen_minimap(map, &minimap);
 	render_minimap(map, &minimap);
 }

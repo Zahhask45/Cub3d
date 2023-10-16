@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:11:59 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:47:13 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ bool	is_valid(t_map *map, double x, double y)
 		return (false);
 	if (y < 0.75 || y >= map->n_lines - 1.25)
 		return (false);
-	if (map->map[(int)y][(int)x] != '0' && map->map[(int)y][(int)x] != map->player.dir)
+	if (map->map[(int)y][(int)x] != '0'
+		&& map->map[(int)y][(int)x] != map->player.dir)
 		return (false);
 	return (true);
 }
 
-int validate(t_map *map, double new_x, double new_y)
+int	validate(t_map *map, double new_x, double new_y)
 {
-	int moved;
+	int	moved;
 
 	moved = 0;
 	if (is_valid(map, new_x, map->player.pos_y))

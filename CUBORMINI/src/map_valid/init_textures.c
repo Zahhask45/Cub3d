@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 15:35:13 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:50:42 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	to_hex(t_map *map)
 	r = map->f_rgb[0];
 	g = map->f_rgb[1];
 	b = map->f_rgb[2];
-	map->f_hex = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);	
+	map->f_hex = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
 void	init_rgb(char *line, t_map *map, int j)
@@ -65,7 +65,8 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 	i = j + 2;
 	while (line[i])
 	{
-		if (ft_isalpha(line[i]) || line[i] == '.' || line[i] == '/' || line[i] == '.' || line[i] == '/')
+		if (ft_isalpha(line[i]) || line[i] == '.'
+			|| line[i] == '/' || line[i] == '.' || line[i] == '/')
 		{
 			start = i;
 			while (line[i] && !ft_iswspace(line[i]) && line[i] != '\n')
@@ -78,7 +79,7 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 				map->img[WEST].path = ft_substr(line, start, i - start);
 			else
 				map->img[EAST].path = ft_substr(line, start, i - start);
-			break;
+			break ;
 		}
 		i++;
 	}

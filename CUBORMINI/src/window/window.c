@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 15:59:59 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:54:13 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ void	do_dda(t_map *map, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y < 0.25 || ray->map_x < 0.25
-			|| ray->map_y > map->n_lines - 0.25 || ray->map_x > map->n_cols - 1.25)
+		if (ray->map_y < 0.25 || ray->map_x < 0.25 || ray->map_y > map->n_lines
+			- 0.25 || ray->map_x > map->n_cols - 1.25)
 			break ;
 		else if (map->map[ray->map_y][ray->map_x] > '0')
 			hit = 1;
@@ -249,13 +249,14 @@ void	update_text(t_map *map, t_ray *ray, t_text *texture, int x)
 		texture->x = texture->size - texture->x - 1;
 	texture->step = 1.0 * texture->size / ray->line_height;
 	texture->pos = (ray->draw_start - HEIGHT / 2
-				+ ray->line_height / 2) * texture->step;
+			+ ray->line_height / 2) * texture->step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
 		texture->y = (int)texture->pos & (texture->size - 1);
 		texture->pos += texture->step;
-		colour = map->text[texture->index][texture->size * texture->y + texture->x];
+		colour = map->text[texture->index][texture->size
+			* texture->y + texture->x];
 		if (texture->index == NORTH || texture->index == EAST)
 			colour = (colour >> 1) & 8355711;
 		if (colour > 0)
@@ -290,11 +291,9 @@ void	start_image(t_map *map, t_img *image)
 	image->bits_per_pixel = 0;
 	image->line_length = 0;
 	image->endian = 0;
-
-	
 	image->mlx_img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-	image->addr = (int *)mlx_get_data_addr(image->mlx_img, &image->bits_per_pixel,
-			&image->line_length, &image->endian);
+	image->addr = (int *)mlx_get_data_addr(image->mlx_img,
+			&image->bits_per_pixel, &image->line_length, &image->endian);
 	return ;
 }
 
@@ -311,9 +310,9 @@ void	set_frame(t_map *map, t_img *image, int x, int y)
 	if (map->text_pix[y][x] > 0)
 		set_image(image, x, y, map->text_pix[y][x]);
 	else if (y < HEIGHT / 2)
-			set_image(image, x, y, map->c_hex);
+		set_image(image, x, y, map->c_hex);
 	else if (y < HEIGHT - 1)
-			set_image(image, x, y, map->f_hex);
+		set_image(image, x, y, map->f_hex);
 }
 
 void	frame(t_map *map)

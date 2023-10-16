@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 13:36:11 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:54:22 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	printf("DIR_Y: %f\n", map.player.dir_y);
 	printf("PLANE_X: %f\n", map.player.plane_x);
 	printf("PLANE_Y: %f\n", map.player.plane_y);
-	
+
 	//map = ft_memalloc(sizeof(t_map *));
 	make_windows(&map);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 18:07:49 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:49:48 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	valid_textures(t_map *map)
 {
 	int		i;
 	int		j;
-	char 	*temp;
+	char	*temp;
 
 	i = 0;
 	while (i < 4)
@@ -30,7 +30,8 @@ void	valid_textures(t_map *map)
 		j = i + 1;
 		while (j < 4)
 		{
-			if (ft_strncmp(map->img[i].path, map->img[j].path, ft_strlen(map->img[i].path)) == 0)
+			if (ft_strncmp(map->img[i].path, map->img[j].path,
+					ft_strlen(map->img[i].path)) == 0)
 				error_msg("Textures can't be the same.");
 			j++;
 		}
@@ -57,7 +58,8 @@ void	validate_map(t_map *map)
 		while (j < (int)ft_strlen(map->map[i]))
 		{
 			c = map->map[i][j];
-			if (i == 0 || i == map->n_lines - 1 || j == 0 || j == (int)ft_strlen(map->map[i]) - 1) 
+			if (i == 0 || i == map->n_lines - 1 || j == 0
+				|| j == (int)ft_strlen(map->map[i]) - 1)
 				valid_border(c);
 			else if (c != '1' && c != '0' && c != ' ' && c != map->player.dir)
 				error_msg("Invalid char!");

@@ -6,7 +6,7 @@
 /*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/11 19:29:58 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:50:10 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ void	write_map(char *path_map, t_map *map)
 		map->map[i] = ft_strtrim(ft_strdup(line), "\n");
 		while (line[j])
 		{
-			if (line[j] == 'N' || line[j] == 'S' || line[j] == 'W' || line[j] == 'E')
+			if (line[j] == 'N' || line[j] == 'S'
+				|| line[j] == 'W' || line[j] == 'E')
 			{
 				map->p_pos[0] = j;
 				map->p_pos[1] = i;

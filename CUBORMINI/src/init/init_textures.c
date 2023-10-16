@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:50:54 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 15:53:22 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:48:15 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_texture_img(t_map *map, t_img *image, char *path)
 	init_clean_img(image);
 	image->mlx_img = mlx_xpm_file_to_image(map->mlx, path, &map->texture.size,
 			&map->texture.size);
-	image->addr = (int *)mlx_get_data_addr(image->mlx_img, &image->bits_per_pixel, 
-			&image->line_length, &image->endian);
+	image->addr = (int *)mlx_get_data_addr(image->mlx_img,
+			&image->bits_per_pixel, &image->line_length, &image->endian);
 	return ;
 }
 
@@ -30,14 +30,16 @@ static int	*xpm_to_img(t_map *map, char *path)
 	int		y;
 
 	init_texture_img(map, &temp, path);
-	buf = ft_memalloc(1 * (sizeof * buf * map->texture.size * map->texture.size));
+	buf = ft_memalloc(1 * (sizeof * buf
+				* map->texture.size * map->texture.size));
 	y = 0;
 	while (y < map->texture.size)
 	{
 		x = 0;
 		while (x < map->texture.size)
 		{
-			buf[y * map->texture.size + x] = temp.addr[y * map->texture.size + x];
+			buf[y * map->texture.size + x]
+				= temp.addr[y * map->texture.size + x];
 			x++;
 		}
 		y++;
