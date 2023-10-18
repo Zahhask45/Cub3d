@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:29:15 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:52 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:50:07 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	get_mini_offset(t_mini *minimap, int map_size, int pos)
 	if (pos > minimap->view_dis && map_size - pos > minimap->view_dis + 1)
 		return (pos - minimap->view_dis);
 	if (pos > minimap->view_dis && map_size - pos <= minimap->view_dis + 1)
-		return (map_size - minimap->view_dis);
+		return (map_size - minimap->size);
 	return (0);
 }
 
@@ -143,11 +143,11 @@ void	render_minimap(t_map *map, t_mini *minimap)
 {
 	int	img_size;
 
-	img_size = 128 + minimap->tile_size;
+	img_size = 180 + minimap->tile_size;
 	init_img(map, &map->minimap, img_size, img_size);
 	draw_minimap(minimap);
 	mlx_put_image_to_window(map->mlx, map->mlx_win, map->minimap.mlx_img,
-		minimap->tile_size, HEIGHT - (128 + (minimap->tile_size * 2)));
+		minimap->tile_size, HEIGHT - (180 + (minimap->tile_size * 2)));
 	mlx_destroy_image(map->mlx, map->minimap.mlx_img);
 }
 
@@ -159,12 +159,15 @@ void	init_minimap(t_map *map)
 	minimap.img = &map->minimap;
 	minimap.view_dis = 6;
 	minimap.size = (2 * minimap.view_dis) + 1;
-	minimap.tile_size = 128 / (2 * minimap.view_dis);
+	minimap.tile_size = 180 / (2 * minimap.view_dis);
 	minimap.off_x = get_mini_offset(&minimap, map->n_cols,
 			(int)map->player.pos_x);
 	minimap.off_y = get_mini_offset(&minimap, map->n_lines,
 			(int)map->player.pos_y);
+	if (minimap.off_y < 0)
+		minimap.off_y = 0;
 	minimap.map = gen_minimap(map, &minimap);
+	/* printf("Offset X: %d\nOffset Y: %d\n", minimap.off_x, minimap.off_y); */
 	render_minimap(map, &minimap);
 }
 

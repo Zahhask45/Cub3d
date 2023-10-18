@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 15:38:47 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:25:28 by brumarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ bool	is_valid(t_map *map, double x, double y)
 		else
 			valid = false;
 	}
-	printf("POS Y: %d\n", inty);
-	printf("POS X: %d\n", intx);
+	/* printf("POS Y: %d\n", inty);
+	printf("POS X: %d\n", intx); */
 	return (valid);
 }
 
