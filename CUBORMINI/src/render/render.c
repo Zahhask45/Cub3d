@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/14 13:50:43 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:36:01 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@ bool	is_valid(t_map *map, double x, double y)
 	int inty;
 	int	intx;
 
-	inty = (int)y;
-	intx = (int)x;
-	if (y < 1.5)
-		inty = 0;
-	if (x < 1.5)
-		intx = 0;
-	/* printf("===========================\n");
-	printf("INT Y: %d\n", inty);
-	printf("FLOAT Y: %f\n", y);
-	printf("INT X: %d\n", intx);
-	printf("FLOAT X: %f\n", x);
-	printf("MAP VALUE: %c\n", map->map[inty][intx]);
-	printf("===========================\n"); */
-	if (x < 0.75 || x >= map->n_cols - 1.25)
+
+
+	if (map->player.pos_y < y || map->player.pos_x < x)
+	{
+		inty = floor(y + 0.45);
+		intx = floor(x + 0.45);
+		if (map->map[inty][intx] == '0')
+			return (true);
 		return (false);
-	if (y < 0.75 || y >= map->n_lines - 1.25)
+	}
+	else
+	{
+		inty = floor(y - 0.45);
+		intx = floor(x - 0.45);
+		if (map->map[inty][intx] == '0')
+			return (true);
 		return (false);
-	if (map->map[inty][intx] == '0')
-		return (true);
-	return (false);
+	}
 }
 
 int validate(t_map *map, double new_x, double new_y)

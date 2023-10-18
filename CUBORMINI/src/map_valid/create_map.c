@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/14 16:07:15 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:10:33 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	get_size(char *path_map, t_map *map)
 			i++;
 		if (line[i] && (line[i] == 'N' || line[i] == 'S'
 				|| line[i] == 'W' || line[i] == 'E' || line[i] == 'F'
-				|| line[i] == 'C' || line[i] == 'D' || line[i] == '\n'))
+				|| line[i] == 'C' || line[i] == '\n'))
 		{
 			free(line);
 			continue ;
