@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:47:13 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:38:47 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,33 @@
 
 bool	is_valid(t_map *map, double x, double y)
 {
-	if (x < 0.75 || x >= map->n_cols - 1.75)
-		return (false);
-	if (y < 0.75 || y >= map->n_lines - 1.25)
-		return (false);
-	if (map->map[(int)y][(int)x] != '0'
-		&& map->map[(int)y][(int)x] != map->player.dir)
-		return (false);
-	return (true);
+	int inty;
+	int	intx;
+	bool valid;
+
+	valid = false;
+
+	if (map->player.pos_y < y || map->player.pos_x < x)
+	{
+		inty = floor(y + 0.25);
+		intx = floor(x + 0.25);
+		if (map->map[inty][intx] == '0')
+			valid = true;
+		else
+			valid = false;
+	}
+	if (map->player.pos_y > y || map->player.pos_x > x)
+	{
+		inty = floor(y - 0.25);
+		intx = floor(x - 0.25);
+		if (map->map[inty][intx] == '0')
+			valid = true;
+		else
+			valid = false;
+	}
+	printf("POS Y: %d\n", inty);
+	printf("POS X: %d\n", intx);
+	return (valid);
 }
 
 int	validate(t_map *map, double new_x, double new_y)
@@ -96,7 +115,7 @@ int	move_player(t_map *map)
 	if (map->player.move_x == 1)
 		moved += right(map);
 	if (map->player.rotate != 0)
-		moved += rotate_player(map);
+		moved += rotate_player(map, 0);
 
 	return (moved);
 }

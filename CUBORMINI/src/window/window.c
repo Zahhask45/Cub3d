@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:54:13 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:46:37 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,6 @@ void	calculate_line(t_ray *ray, t_player *player)
 		ray->wall_dis = (ray->sid_dis_x - ray->delta_dis_x);
 	else
 		ray->wall_dis = (ray->sid_dis_y - ray->delta_dis_y);
-	/* printf("Wall Dist: %f\n", ray->wall_dis);
-	printf("SIDE DIST X: %f\n", ray->sid_dis_x);
-	printf("SIDE DIST Y: %f\n", ray->sid_dis_y);
-	printf("SIDE DELTA DIST X: %f\n", ray->delta_dis_x);
-	printf("SIDE DELTA DIST Y: %f\n", ray->delta_dis_y); */
 	ray->line_height = (int)(HEIGHT / ray->wall_dis);
 	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)

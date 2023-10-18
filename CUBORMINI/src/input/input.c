@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:24:23 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/11 17:09:15 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:38:35 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ static int	mouse_handler(int x, int y, t_map *map)
 	wrap(map, x, y);
 	if (x == old_x)
 		return (0);
-	//! NEED TO MAKE
-	/* else if (x < old_x)
-		map->player.moved += rotate_player(map, -1);
+	else if (x < old_x)
+	{
+		map->player.rotate = -1;
+		map->player.moved += rotate_player(map, 1);
+	}
 	else if (x > old_x)
-		map->player.moved += rotate_player(map, 1); */
+	{
+		map->player.rotate = 1;
+		map->player.moved += rotate_player(map, 1);
+	}
+	map->player.rotate = 0;
 	old_x = x;
 	return (0);
 }

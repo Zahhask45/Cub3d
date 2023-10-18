@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/16 15:50:10 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:48:46 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	write_map(char *path_map, t_map *map)
 	int		fd;
 	char	*line;
 
-	map->map = ft_memalloc(sizeof(char *) * map->n_lines);
+	map->map = ft_memalloc(sizeof(char *) * (map->n_lines + 1));
 	fd = open(path_map, O_RDONLY);
 	init_textures(map, fd);
 	i = 0;
@@ -122,11 +122,10 @@ void	write_map(char *path_map, t_map *map)
 			if (line[j] == 'N' || line[j] == 'S'
 				|| line[j] == 'W' || line[j] == 'E')
 			{
-				map->p_pos[0] = j;
-				map->p_pos[1] = i;
 				map->player.pos_x = j + 0.5;
 				map->player.pos_y = i + 0.5;
 				map->player.dir = line[j];
+				map->map[i][j] = '0';
 			}
 			j++;
 		}

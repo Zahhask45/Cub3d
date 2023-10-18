@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:13:27 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:39:29 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define HEIGHT 1000
 # define WIDTH 1920
 # define MOVESPEED 0.1
-# define ROTATION_SPEED 0.1
+# define ROTATION_SPEED 0.08
+# define ROTATION_MOUSE 0.03
 
 enum e_texture_index
 {
@@ -110,7 +111,7 @@ typedef struct s_map
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_img		img[5];
+	t_img		img[4];
 	t_img		minimap;
 
 	char		**map;
@@ -184,7 +185,7 @@ int		render(t_map *map);
 
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
-int		rotate_player(t_map *map);
+int		rotate_player(t_map *map, int mode);
 
 
 //* CHECK_VALID

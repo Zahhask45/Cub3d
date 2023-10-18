@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/16 15:49:48 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:48:37 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	validate_map(t_map *map)
 				|| j == (int)ft_strlen(map->map[i]) - 1)
 				valid_border(c);
 			else if (c != '1' && c != '0' && c != ' ' && c != map->player.dir)
-				error_msg("Invalid char!");
+				error_msg("Invalid char2!");
 			j++;
 		}
 		i++;

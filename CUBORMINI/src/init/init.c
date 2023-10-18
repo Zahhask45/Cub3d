@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:42:55 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:48:52 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:47:21 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_textinfo(t_text *texture)
 	texture->step = 0.0;
 	texture->x = 0;
 	texture->y = 0;
-	texture->size = 32; //* OR 64
+	texture->size = 32;
 }
 
 void	init_colors(t_map *map)
