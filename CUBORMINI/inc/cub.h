@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 15:39:29 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:13:07 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void	init_all(t_map *map);
 //* INIT TEXTURES
 void	init_texture_img(t_map *map, t_img *image, char *path);
 void	start_text(t_map *map);
+void	init_img(t_map *map, t_img *image, int width, int height);
 
 //* INPUT
 int		keyhooks_release(int key, t_map *map);

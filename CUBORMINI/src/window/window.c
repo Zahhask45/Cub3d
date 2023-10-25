@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:41 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 14:46:37 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/23 17:13:55 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,7 +354,6 @@ void	make_windows(t_map *map)
 	start_text(map);
 	render_images(map);
 	input(map);
-	//ft_init_img(map);
 	mlx_loop_hook(map->mlx, &render, map);
 	mlx_loop(map->mlx);
 }
