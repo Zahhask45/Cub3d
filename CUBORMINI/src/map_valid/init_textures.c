@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 14:47:12 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:11:51 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,10 @@ void	init_textures(t_map *map, int fd)
 		if (line[j] != '\n')
 			i++;
 		else
+		{
+			free(line);
 			continue ;
+		}
 		if (line[j] == 'C' || line[j] == 'F')
 			init_rgb(line, map, j);
 		else if (line[j] == 'N' || line[j] == 'S'

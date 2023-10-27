@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:53 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/05 16:41:38 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:39:08 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 int	close_win(t_map *map)
 {
 	ft_putendl_fd("Exiting", 1);
+	free(map->img[NORTH].path);
+	free(map->img[SOUTH].path);
+	free(map->img[WEST].path);
+	free(map->img[EAST].path);
 	//mlx_destroy_image(map->mlx, map->mlx_win);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 	mlx_destroy_display(map->mlx);

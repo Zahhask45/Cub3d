@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:46 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:12:40 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	write_map(char *path_map, t_map *map)
 	int		j;
 	int		fd;
 	char	*line;
+	char	*line2;
 
 	map->map = ft_memalloc(sizeof(char *) * (map->n_lines + 1));
 	fd = open(path_map, O_RDONLY);
@@ -115,8 +116,12 @@ void	write_map(char *path_map, t_map *map)
 		if (!line)
 			break ;
 		if (line[0] == '\n')
+		{
+			free(line);
 			continue ;
-		map->map[i] = ft_strtrim(ft_strdup(line), "\n");
+		}
+		line2 = ft_strdup(line);
+		map->map[i] = ft_strtrim(line2, "\n");
 		while (line[j])
 		{
 			if (line[j] == 'N' || line[j] == 'S'
@@ -129,6 +134,7 @@ void	write_map(char *path_map, t_map *map)
 			}
 			j++;
 		}
+		free(line2);
 		free(line);
 		i++;
 	}
@@ -150,9 +156,6 @@ void	create_map(char *path_map, t_map *map)
 		error_msg("Invalid char !");
 	get_size(path_map, map);
 	write_map(path_map, map);
-	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->player.dir);
-	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map->f_rgb[0], map->f_rgb[1], map->f_rgb[2], map->c_rgb[0], map->c_rgb[1], map->c_rgb[2]);
-	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map->img[0].path, map->img[1].path, map->img[2].path, map->img[3].path);
 	validate_map(map);
-	print_map(map);
+	//print_map(map);
 }

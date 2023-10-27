@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/16 15:54:22 by brumarti         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:14:32 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	init_all(&map);
 	create_map(argv[1], &map);
-
-	printf("Player Dir: %c\n", map.player.dir);
 
 	if (map.player.dir == 'S')
 	{
@@ -51,13 +49,6 @@ int	main(int argc, char **argv)
 		map.player.plane_x = 0;
 		map.player.plane_y = 0.66;
 	}
-
-	printf("DIR_X: %f\n", map.player.dir_x);
-	printf("DIR_Y: %f\n", map.player.dir_y);
-	printf("PLANE_X: %f\n", map.player.plane_x);
-	printf("PLANE_Y: %f\n", map.player.plane_y);
-
-	//map = ft_memalloc(sizeof(t_map *));
 	make_windows(&map);
 	return (0);
 }

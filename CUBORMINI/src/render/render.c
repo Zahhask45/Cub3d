@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:53:44 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/25 14:29:02 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:14:07 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ bool	is_valid(t_map *map, double x, double y)
 		valid = true;
 	else
 		valid = false;
-	printf("=========================\n");
-	printf("POS Y: %f\n", y);
-	printf("POS X: %f\n", x);
-	printf("POS INT Y: %d\n", inty);
-	printf("POS INT X: %d\n", intx);
-	printf("MAP POSITION %c\n", map->map[inty][intx]);
-	printf("=========================\n");
 	return (valid);
 }
 

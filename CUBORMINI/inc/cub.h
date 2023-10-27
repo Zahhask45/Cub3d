@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/23 17:13:07 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:18:49 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int		render(t_map *map);
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
 int		rotate_player(t_map *map, int mode);
-
+void	free_tab(void **tab);
 
 //* CHECK_VALID
 void	validate_map(t_map *map);

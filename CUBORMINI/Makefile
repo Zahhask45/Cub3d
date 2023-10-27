@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brumarti <brumarti@student.42.fr>          +#+  +:+       +#+         #
+#    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/10/16 15:12:26 by brumarti         ###   ########.fr        #
+#    Updated: 2023/10/27 14:30:48 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ _WHITE		=	\e[1;37m
 
 
 CC			= cc
-CFLAGS		= -g -pthread -Wall -Werror -Wextra
+CFLAGS		= -g -pthread -Wall -Werror -Wextra #-fsanitize=leak
 
 
 RM			= rm -rf
