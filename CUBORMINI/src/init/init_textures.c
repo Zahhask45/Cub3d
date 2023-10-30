@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:50:54 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:29 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:19:04 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ static int	*xpm_to_img(t_map *map, char *path)
 
 void	start_text(t_map *map)
 {
-	map->text = ft_memalloc(5 * sizeof *map->text);
+	map->text = ft_memalloc(5 * sizeof * map->text);
 	map->text[NORTH] = xpm_to_img(map, map->img[NORTH].path);
 	map->text[SOUTH] = xpm_to_img(map, map->img[SOUTH].path);
 	map->text[WEST] = xpm_to_img(map, map->img[WEST].path);
 	map->text[EAST] = xpm_to_img(map, map->img[EAST].path);
 }
-
-
