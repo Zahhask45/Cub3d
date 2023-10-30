@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/10/27 14:30:48 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/10/30 14:25:51 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ WINDOW		=	window.c \
 #*--------------------------------
 
 
-
 #*--------------------------------
 #* MAP DIRECTORY AND FILES
 #*--------------------------------
@@ -101,6 +100,15 @@ RENDER			=	render.c \
 #*--------------------------------
 
 
+#*--------------------------------
+#* UTILS DIRECTORY AND FILES
+#*--------------------------------
+UTILS_DIR		=	utils/
+UTILS			=	utils.c \
+					utils2.c \
+#*--------------------------------
+
+
 
 
 SRC			=	$(addprefix $(SRC_DIR), $(SOURCES))
@@ -109,14 +117,15 @@ MAP_SRC		=	$(addprefix $(MAP_DIR), $(MAP))
 INIT_SRC	=	$(addprefix $(INIT_DIR), $(INIT))
 INPUT_SRC	=	$(addprefix $(INPUT_DIR), $(INPUT))
 RENDER_SRC	=	$(addprefix $(RENDER_DIR), $(RENDER))
+UTILS_SRC	=	$(addprefix $(UTILS_DIR), $(UTILS))
 
 SOURCES		=	$(WIN_SRC) \
 				$(MAP_SRC) \
 				$(INIT_SRC) \
 				$(INPUT_SRC) \
 				$(RENDER_SRC) \
+				$(UTILS_SRC) \
 				main.c \
-				utils.c \
 				memory.c
 
 
@@ -153,6 +162,7 @@ $(OBJ_DIR):
 				mkdir -p $@/$(INIT_DIR)
 				mkdir -p $@/$(INPUT_DIR)
 				mkdir -p $@/$(RENDER_DIR)
+				mkdir -p $@/$(UTILS_DIR)
 
 clean:
 	$(RM) $(OBJ_DIR) $(OBJ_PATH_BONUS)

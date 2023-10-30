@@ -6,15 +6,15 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/27 16:18:49 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:44:10 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# define HEIGHT 1000
-# define WIDTH 1920
+# define HEIGHT 100
+# define WIDTH 100
 # define MOVESPEED 0.1
 # define ROTATION_SPEED 0.08
 # define ROTATION_MOUSE 0.03
@@ -152,6 +152,8 @@ int		last_char(char *str, char c);
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);
 int		create_trgb(int t, int red, int green, int blue);
+void	init_rgb(char *line, t_map *map, int j);
+void	get_textures(char *line, t_map *map, char c, int j);
 
 //* INIT_TEXTURES
 void	init_textures(t_map *map, int fd);
@@ -188,6 +190,8 @@ int		render(t_map *map);
 void	set_image(t_img *image, int x, int y, int colour);
 int		rotate_player(t_map *map, int mode);
 void	free_tab(void **tab);
+void	p_pos(t_map *map);
+void	rgb_text(t_map *map, char *line, int j);
 
 //* CHECK_VALID
 void	validate_map(t_map *map);

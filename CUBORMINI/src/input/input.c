@@ -6,21 +6,20 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:24:23 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/27 16:31:39 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:20:02 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
 static void	wrap(t_map *map, int x, int y)
 {
-	if (x > WIDTH - 20) //* 20 is the edge distance
+	if (x > WIDTH - 20)
 	{
 		x = 20;
 		mlx_mouse_move(map->mlx, map->mlx_win, x, y);
 	}
-	if (x < 20) //* 20 is the edge distance
+	if (x < 20)
 	{
 		x = WIDTH - 20;
 		mlx_mouse_move(map->mlx, map->mlx_win, x, y);
@@ -55,5 +54,4 @@ void	input(t_map *map)
 	mlx_hook(map->mlx_win, 2, 1L << 0, keyhooks_press, map);
 	mlx_hook(map->mlx_win, 3, 1L << 1, keyhooks_release, map);
 	mlx_hook(map->mlx_win, 6, 1L << 6, mouse_handler, map);
-	//mlx_mouse_hide(map->mlx, map->mlx_win);
 }

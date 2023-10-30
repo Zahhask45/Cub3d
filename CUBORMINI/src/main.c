@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:24:06 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/25 15:14:32 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:26:52 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	init_all(&map);
 	create_map(argv[1], &map);
-
-	if (map.player.dir == 'S')
-	{
-		map.player.dir_x = 0;
-		map.player.dir_y = 1;
-		map.player.plane_x = -0.66;
-		map.player.plane_y = 0;
-	}
-	else if (map.player.dir == 'N')
-	{
-		map.player.dir_x = 0;
-		map.player.dir_y = -1;
-		map.player.plane_x = 0.66;
-		map.player.plane_y = 0;
-	}
-	else if (map.player.dir == 'W')
-	{
-		map.player.dir_x = -1;
-		map.player.dir_y = 0;
-		map.player.plane_x = 0;
-		map.player.plane_y = -0.66;
-	}
-	else if (map.player.dir == 'E')
-	{
-		map.player.dir_x = 1;
-		map.player.dir_y = 0;
-		map.player.plane_x = 0;
-		map.player.plane_y = 0.66;
-	}
+	p_pos(&map);
 	make_windows(&map);
 	return (0);
 }
