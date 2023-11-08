@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 11:20:58 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/27 16:10:19 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:06:40 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*ft_strjoin(char *left_str, char *buff)
 	}
 	if (!left_str || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlenn(left_str) + ft_strlenn(buff)) + 1));
+	str = malloc(sizeof(char)
+			* ((ft_strlenn(left_str) + ft_strlenn(buff)) + 1));
 	if (!str)
 		return (NULL);
 	i = -1;

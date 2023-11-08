@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/10/30 14:25:51 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/11/08 14:59:43 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ WIN_DIR		=	window/
 WINDOW		=	window.c \
 				win_utils.c \
 				init_minimap.c \
+				dda.c \
+				frame.c
 #*--------------------------------
 
 
@@ -70,7 +72,8 @@ WINDOW		=	window.c \
 MAP_DIR		=	map_valid/
 MAP			=	create_map.c \
 				init_textures.c \
-				check_valid.c
+				check_valid.c \
+				get_size.c
 #*--------------------------------
 
 
@@ -80,6 +83,7 @@ MAP			=	create_map.c \
 INIT_DIR		=	init/
 INIT			=	init.c \
 					init_textures.c \
+					init_ray.c
 #*--------------------------------
 
 
@@ -97,6 +101,16 @@ INPUT			=	input.c \
 RENDER_DIR		=	render/
 RENDER			=	render.c \
 					rotate.c \
+					validation.c \
+					direction.c
+#*--------------------------------
+
+
+#*--------------------------------
+#* TEXTURE DIRECTORY AND FILES
+#*--------------------------------
+TEXTURES_DIR	=	textures/
+TEXTURES		=	textures.c
 #*--------------------------------
 
 
@@ -106,6 +120,8 @@ RENDER			=	render.c \
 UTILS_DIR		=	utils/
 UTILS			=	utils.c \
 					utils2.c \
+					cleaner.c \
+					minimap_utils.c
 #*--------------------------------
 
 
@@ -118,6 +134,7 @@ INIT_SRC	=	$(addprefix $(INIT_DIR), $(INIT))
 INPUT_SRC	=	$(addprefix $(INPUT_DIR), $(INPUT))
 RENDER_SRC	=	$(addprefix $(RENDER_DIR), $(RENDER))
 UTILS_SRC	=	$(addprefix $(UTILS_DIR), $(UTILS))
+TEXTURES_SRC=	$(addprefix $(TEXTURES_DIR), $(TEXTURES))
 
 SOURCES		=	$(WIN_SRC) \
 				$(MAP_SRC) \
@@ -125,8 +142,8 @@ SOURCES		=	$(WIN_SRC) \
 				$(INPUT_SRC) \
 				$(RENDER_SRC) \
 				$(UTILS_SRC) \
+				$(TEXTURES_SRC) \
 				main.c \
-				memory.c
 
 
 OBJS		=	$(SOURCES:.c=.o)
@@ -163,6 +180,7 @@ $(OBJ_DIR):
 				mkdir -p $@/$(INPUT_DIR)
 				mkdir -p $@/$(RENDER_DIR)
 				mkdir -p $@/$(UTILS_DIR)
+				mkdir -p $@/$(TEXTURES_DIR)
 
 clean:
 	$(RM) $(OBJ_DIR) $(OBJ_PATH_BONUS)

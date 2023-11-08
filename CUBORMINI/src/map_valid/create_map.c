@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/30 15:06:04 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:48:49 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,6 @@ int	valid_map(char *path_map)
 	return (close(fd), 1);
 }
 
-void	get_size(char *path_map, t_map *map)
-{
-	int		len;
-	int		i;
-	char	*line;
-	int		fd;
-
-	fd = open(path_map, O_RDONLY);
-	len = 0;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		i = 0;
-		while (line[i] && ft_iswspace(line[i]))
-			i++;
-		if (line[i] && (line[i] == 'N' || line[i] == 'S'
-				|| line[i] == 'W' || line[i] == 'E' || line[i] == 'F'
-				|| line[i] == 'C' || line[i] == '\n'))
-		{
-			free(line);
-			continue ;
-		}
-		if (line[i] == '1')
-		{
-			if (map->n_cols < last_char(line, '1'))
-				map->n_cols = last_char(line, '1');
-			len++;
-		}
-		free(line);
-	}
-	map->n_lines = len;
-}
-
 int	valid_path(char *path_map)
 {
 	char	*temp;
@@ -96,13 +61,39 @@ int	valid_path(char *path_map)
 	return (EXIT_SUCCESS);
 }
 
+int	write_map2(t_map *map, char *line, int j, int i)
+{
+	char	*line2;
+
+	if (line[0] == '\n')
+	{
+		free(line);
+		return (1);
+	}
+	line2 = ft_strdup(line);
+	map->map[i] = ft_strtrim(line2, "\n");
+	while (line[j])
+	{
+		if (line[j] == 'N' || line[j] == 'S'
+			|| line[j] == 'W' || line[j] == 'E')
+		{
+			map->player.pos_x = j + 0.5;
+			map->player.pos_y = i + 0.5;
+			map->player.dir = line[j];
+			map->map[i][j] = '0';
+		}
+		j++;
+	}
+	free(line2);
+	return (0);
+}
+
 void	write_map(char *path_map, t_map *map)
 {
 	int		i;
 	int		j;
 	int		fd;
 	char	*line;
-	char	*line2;
 
 	map->map = ft_memalloc(sizeof(char *) * (map->n_lines + 1));
 	fd = open(path_map, O_RDONLY);
@@ -114,26 +105,8 @@ void	write_map(char *path_map, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line[0] == '\n')
-		{
-			free(line);
+		if (write_map2(map, line, j, i) == 1)
 			continue ;
-		}
-		line2 = ft_strdup(line);
-		map->map[i] = ft_strtrim(line2, "\n");
-		while (line[j])
-		{
-			if (line[j] == 'N' || line[j] == 'S'
-				|| line[j] == 'W' || line[j] == 'E')
-			{
-				map->player.pos_x = j + 0.5;
-				map->player.pos_y = i + 0.5;
-				map->player.dir = line[j];
-				map->map[i][j] = '0';
-			}
-			j++;
-		}
-		free(line2);
 		free(line);
 		i++;
 	}
@@ -148,7 +121,6 @@ void	create_map(char *path_map, t_map *map)
 	map->f_rgb[0] = -1;
 	map->c_rgb[0] = -1;
 	map->player.dir = 'X';
-
 	if (valid_path(path_map) == EXIT_FAILURE)
 		exit(1);
 	if (!valid_map(path_map))
@@ -156,5 +128,4 @@ void	create_map(char *path_map, t_map *map)
 	get_size(path_map, map);
 	write_map(path_map, map);
 	validate_map(map);
-	//print_map(map);
 }

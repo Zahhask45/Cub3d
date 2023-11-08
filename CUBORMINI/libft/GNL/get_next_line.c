@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 12:02:56 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/08/05 14:40:45 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:07:13 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,41 +52,4 @@ char	*get_next_line(int fd)
 	line = ft_get_line(left_str);
 	left_str = ft_new_left(left_str);
 	return (line);
-}
-
-int	main(void)
-{
-	char	*line;
-	int		i;
-	int		equal;
-	int		fd1;
-	int		fd2;
-	int		fd3;
-	fd1 = open("tests/test.txt", O_RDONLY);
-	fd2 = open("tests/banana.txt", O_RDONLY);
-	fd3 = open("tests/never.txt", O_RDONLY);
-	i = 1;
-	while (i < 54)
-	{
-		line = get_next_line(fd2);
-		printf("%s \n", line);
-		free(line);
-		i++;
-	}
-	printf("\n");
-	close(fd2);
-	equal = 210;
-	while (equal--)
-		printf("=");
-	printf("\n\n\n");
-	i = 1;
-	while (i < 60)
-	{
-		line = get_next_line(fd3);
-		printf("%s \n", line);
-		free(line);
-		i++;
-	}
-	close(fd3);
-	return (0);
 }

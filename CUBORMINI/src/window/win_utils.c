@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 15:07:53 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/30 13:51:54 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:59:10 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ int	keyhooks_release(int key, t_map *map)
 {
 	if (!(map->mlx))
 		return (0);
-	if (key == 0xff1b) //* ESC button
+	if (key == ESC)
 		close_win(map);
-	if (key == 0xff51 && map->player.rotate <= 1) //* ARROW LEFT button
+	if (key == ARROW_LEFT && map->player.rotate <= 1)
 		map->player.rotate = 0;
-	if (key == 0xff53 && map->player.rotate >= -1) //* ARROW RIGHT button
+	if (key == ARROW_RIGHT && map->player.rotate >= -1)
 		map->player.rotate = 0;
-	if (key == 0x0077 && map->player.move_y == 1) //* W button
+	if (key == W_BUTTON && map->player.move_y == 1)
 		map->player.move_y = 0;
-	if (key == 0x0061 && map->player.move_x == -1) //* A button
+	if (key == A_BUTTON && map->player.move_x == -1)
 		map->player.move_x = 0;
-	if (key == 0x0073 && map->player.move_y == -1) //* S button
+	if (key == S_BUTTON && map->player.move_y == -1)
 		map->player.move_y += 1;
-	if (key == 0x0064 && map->player.move_x == 1) //* D button
+	if (key == D_BUTTON && map->player.move_x == 1)
 		map->player.move_x -= 1;
 	return (0);
 }
@@ -53,19 +53,19 @@ int	keyhooks_press(int key, t_map *map)
 {
 	if (!(map->mlx))
 		return (0);
-	if (key == 0xff1b) //* ESC button
+	if (key == ESC)
 		close_win(map);
-	if (key == 0xff51) //* ARROW LEFT button
+	if (key == ARROW_LEFT)
 		map->player.rotate -= 1;
-	if (key == 0xff53) //* ARROW RIGHT button
+	if (key == ARROW_RIGHT)
 		map->player.rotate += 1;
-	if (key == 0x0077) //* W button
+	if (key == W_BUTTON)
 		map->player.move_y = 1;
-	if (key == 0x0061) //* A button
+	if (key == A_BUTTON)
 		map->player.move_x = -1;
-	if (key == 0x0073) //* S button
+	if (key == S_BUTTON)
 		map->player.move_y = -1;
-	if (key == 0x0064) //* D button
+	if (key == D_BUTTON)
 		map->player.move_x = 1;
 	return (0);
 }

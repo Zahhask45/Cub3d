@@ -6,11 +6,20 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:50:54 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/30 14:19:04 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:32:49 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	init_img(t_map *map, t_img *image, int width, int height)
+{
+	init_clean_img(image);
+	image->mlx_img = mlx_new_image(map->mlx, width, height);
+	image->addr = (int *)mlx_get_data_addr(image->mlx_img,
+			&image->bits_per_pixel, &image->line_length, &image->endian);
+	return ;
+}
 
 void	init_texture_img(t_map *map, t_img *image, char *path)
 {
