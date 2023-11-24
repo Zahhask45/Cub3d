@@ -6,21 +6,20 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:24:23 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 15:38:35 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:20:02 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
 static void	wrap(t_map *map, int x, int y)
 {
-	if (x > WIDTH - 20) //* 20 is the edge distance
+	if (x > WIDTH - 20)
 	{
 		x = 20;
 		mlx_mouse_move(map->mlx, map->mlx_win, x, y);
 	}
-	if (x < 20) //* 20 is the edge distance
+	if (x < 20)
 	{
 		x = WIDTH - 20;
 		mlx_mouse_move(map->mlx, map->mlx_win, x, y);

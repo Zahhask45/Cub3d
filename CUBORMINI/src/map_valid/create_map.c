@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:46 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:48:49 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,43 +38,7 @@ int	valid_map(char *path_map)
 		free(line);
 		i++;
 	}
-	close(fd);
-	return (1);
-}
-
-void	get_size(char *path_map, t_map *map)
-{
-	int		len;
-	int		i;
-	char	*line;
-	int		fd;
-
-	fd = open(path_map, O_RDONLY);
-	len = 0;
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		i = 0;
-		while (line[i] && ft_iswspace(line[i]))
-			i++;
-		if (line[i] && (line[i] == 'N' || line[i] == 'S'
-				|| line[i] == 'W' || line[i] == 'E' || line[i] == 'F'
-				|| line[i] == 'C' || line[i] == '\n'))
-		{
-			free(line);
-			continue ;
-		}
-		if (line[i] == '1')
-		{
-			if (map->n_cols < last_char(line, '1'))
-				map->n_cols = last_char(line, '1');
-			len++;
-		}
-		free(line);
-	}
-	map->n_lines = len;
+	return (close(fd), 1);
 }
 
 int	valid_path(char *path_map)
@@ -97,6 +61,33 @@ int	valid_path(char *path_map)
 	return (EXIT_SUCCESS);
 }
 
+int	write_map2(t_map *map, char *line, int j, int i)
+{
+	char	*line2;
+
+	if (line[0] == '\n')
+	{
+		free(line);
+		return (1);
+	}
+	line2 = ft_strdup(line);
+	map->map[i] = ft_strtrim(line2, "\n");
+	while (line[j])
+	{
+		if (line[j] == 'N' || line[j] == 'S'
+			|| line[j] == 'W' || line[j] == 'E')
+		{
+			map->player.pos_x = j + 0.5;
+			map->player.pos_y = i + 0.5;
+			map->player.dir = line[j];
+			map->map[i][j] = '0';
+		}
+		j++;
+	}
+	free(line2);
+	return (0);
+}
+
 void	write_map(char *path_map, t_map *map)
 {
 	int		i;
@@ -114,21 +105,8 @@ void	write_map(char *path_map, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (line[0] == '\n')
+		if (write_map2(map, line, j, i) == 1)
 			continue ;
-		map->map[i] = ft_strtrim(ft_strdup(line), "\n");
-		while (line[j])
-		{
-			if (line[j] == 'N' || line[j] == 'S'
-				|| line[j] == 'W' || line[j] == 'E')
-			{
-				map->player.pos_x = j + 0.5;
-				map->player.pos_y = i + 0.5;
-				map->player.dir = line[j];
-				map->map[i][j] = '0';
-			}
-			j++;
-		}
 		free(line);
 		i++;
 	}
@@ -143,16 +121,11 @@ void	create_map(char *path_map, t_map *map)
 	map->f_rgb[0] = -1;
 	map->c_rgb[0] = -1;
 	map->player.dir = 'X';
-
 	if (valid_path(path_map) == EXIT_FAILURE)
 		exit(1);
 	if (!valid_map(path_map))
 		error_msg("Invalid char !");
 	get_size(path_map, map);
 	write_map(path_map, map);
-	printf("lines: %d; col: %d\np_x: %d; p_y: %d; p_dir: %c\n", map->n_lines, map->n_cols, map->p_pos[0], map->p_pos[1], map->player.dir);
-	printf("Floor RGB: %d,%d,%d; Ceiling RGB: %d,%d,%d\n", map->f_rgb[0], map->f_rgb[1], map->f_rgb[2], map->c_rgb[0], map->c_rgb[1], map->c_rgb[2]);
-	printf("N Texture: %s;\nS Texture: %s;\nW Texture: %s;\nE Texture: %s;\n", map->img[0].path, map->img[1].path, map->img[2].path, map->img[3].path);
 	validate_map(map);
-	print_map(map);
 }

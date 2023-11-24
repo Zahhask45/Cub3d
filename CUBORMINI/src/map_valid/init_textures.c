@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 14:47:12 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:40:25 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	init_rgb(char *line, t_map *map, int j)
 			start = j;
 			if (line[j - 1] == '-')
 				error_msg("Invalid RGB.");
-			while (ft_isdigit(line[++j]));
+			while (ft_isdigit(line[++j]))
+				;
 			temp = ft_substr(line, start, j - start);
 			if (line[0] == 'C')
-				map->c_rgb[index] = ft_atoi(temp);
+				map->c_rgb[index++] = ft_atoi(temp);
 			else
-				map->f_rgb[index] = ft_atoi(temp);
-			index++;
+				map->f_rgb[index++] = ft_atoi(temp);
 			free(temp);
 		}
 	}
@@ -116,12 +116,11 @@ void	init_textures(t_map *map, int fd)
 		if (line[j] != '\n')
 			i++;
 		else
+		{
+			free(line);
 			continue ;
-		if (line[j] == 'C' || line[j] == 'F')
-			init_rgb(line, map, j);
-		else if (line[j] == 'N' || line[j] == 'S'
-			|| line[j] == 'E' || line[j] == 'W')
-			get_textures(line, map, line[j], j);
+		}
+		rgb_text(map, line, j);
 		free(line);
 	}
 }

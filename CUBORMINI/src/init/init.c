@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:42:55 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/10/18 14:47:21 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:35:14 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_clean_img(t_img *img)
 {
 	img->mlx_img = NULL;
+	img->path = NULL;
 	img->addr = NULL;
 	img->bits_per_pixel = 0;
 	img->line_length = 0;

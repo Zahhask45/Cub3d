@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:53:32 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 14:48:37 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:41:00 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,3 @@ void	validate_map(t_map *map)
 	if (map->player.dir == 'X')
 		error_msg("Missig player !");
 }
-

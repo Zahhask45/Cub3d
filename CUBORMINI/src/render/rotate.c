@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:58:43 by brumarti          #+#    #+#             */
-/*   Updated: 2023/10/18 15:38:26 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:49:48 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	rotate_player(t_map *map, int mode)
 		rotspeed = ROTATION_SPEED * map->player.rotate;
 	else
 		rotspeed = ROTATION_MOUSE * map->player.rotate;
-
 	moved += rotation(map, rotspeed);
 	return (moved);
 }
