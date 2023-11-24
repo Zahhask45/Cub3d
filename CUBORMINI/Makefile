@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/11/08 14:59:43 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/11/24 15:03:31 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ _WHITE		=	\e[1;37m
 
 
 CC			= cc
-CFLAGS		= -g -pthread -Wall -Werror -Wextra #-fsanitize=leak
+CFLAGS		= -g -pthread -Wall -Werror -Wextra #-fsanitize=address
 
 
 RM			= rm -rf

@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/11/08 15:08:41 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:02:58 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int		ft_iswspace(char c);
 int		ft_isvalidc(char c);
 void	print_map(t_map *map);
 void	error_msg(char *msg);
+void	free_tab(void **tab);
 int		last_char(char *str, char c);
 bool	valid_map_coord(int coord, int size);
 int		get_mini_offset(t_mini *minimap, int map_size, int pos);
@@ -194,19 +195,22 @@ int		render(t_map *map);
 //! NOT THE REAL PLACE TO PUT THIS ONE
 void	set_image(t_img *image, int x, int y, int colour);
 int		rotate_player(t_map *map, int mode);
-void	free_tab(void **tab);
 void	p_pos(t_map *map);
 void	rgb_text(t_map *map, char *line, int j);
 void	get_size(char *path_map, t_map *map);
 int		validate(t_map *map, double new_x, double new_y);
+int		ray(t_player *player, t_map *map);
+void	frame(t_map *map);
+
+//* DDA
+void	dda(t_ray *ray, t_player *player);
+void	do_dda(t_map *map, t_ray *ray);
+
+//* MOVEMENTS
 int		right(t_map *map);
 int		left(t_map *map);
 int		forward(t_map *map);
 int		backwards(t_map *map);
-void	dda(t_ray *ray, t_player *player);
-void	do_dda(t_map *map, t_ray *ray);
-int		ray(t_player *player, t_map *map);
-void	frame(t_map *map);
 
 //* CHECK_VALID
 void	validate_map(t_map *map);
