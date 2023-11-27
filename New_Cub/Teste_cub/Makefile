@@ -6,7 +6,7 @@
 #    By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 14:01:01 by jodos-sa          #+#    #+#              #
-#    Updated: 2023/11/27 14:53:51 by jodos-sa         ###   ########.fr        #
+#    Updated: 2023/11/27 16:28:54 by jodos-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ CFLAGS		= -g -pthread -Wall -Werror -Wextra #-fsanitize=address
 RM			= rm -rf
 
 
-NAME		= cub
+NAME		= cub3d
 
 
 MLX_PATH	= ./mlx/minilibx-linux/

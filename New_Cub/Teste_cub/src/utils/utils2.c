@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:21:52 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/11/24 18:43:32 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:00:00 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	rgb_text(t_map *map, char *line, int j)
 		init_rgb(line, map, j);
 	else if (line[j] == 'N' || line[j] == 'S'
 		|| line[j] == 'E' || line[j] == 'W')
-			get_textures(line, map, line[j], j);
+		get_textures(line, map, line[j], j);
 }
 
 void	p_pos(t_map *map)

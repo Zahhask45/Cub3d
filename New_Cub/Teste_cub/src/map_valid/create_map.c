@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:55:57 by brumarti          #+#    #+#             */
-/*   Updated: 2023/11/24 18:52:07 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:58:37 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,7 @@ int	valid_map(char *path_map)
 		}
 		if (line[0] != '\n' && !ft_isvalidc(line[0]))
 		{
-			free(line);
-			while (1)
-			{
-				line = get_next_line(fd);
-				if (!line)
-					break ;
-				free(line);
-			}
+			finish_gnl(line, fd);
 			return (0);
 		}
 		free(line);
@@ -80,6 +73,7 @@ int	write_map2(t_map *map, char *line, int j, int i)
 	}
 	line2 = ft_strdup(line);
 	map->map[i] = ft_strtrim(line2, "\n");
+	free(line2);
 	while (line[j])
 	{
 		if (line[j] == 'N' || line[j] == 'S'
@@ -88,30 +82,12 @@ int	write_map2(t_map *map, char *line, int j, int i)
 			map->player.pos_x = j + 0.5;
 			map->player.pos_y = i + 0.5;
 			if (map->player.dir != 'X')
-			{
-				free (line);
-				free (line2);
-				while (1)
-				{
-					line = get_next_line(map->fd);
-					if (!line)
-						break ;
-					free(line);
-				}
-				close(map->fd);
-				free_tab((void **)map->map);
-				free(map->img[NORTH].path);
-				free(map->img[SOUTH].path);
-				free(map->img[WEST].path);
-				free(map->img[EAST].path);
-				error_msg("Multiple players!"); 
-			}
+				clean_msg(map, line, "Multiple players!", 1);
 			map->player.dir = line[j];
 			map->map[i][j] = '0';
 		}
 		j++;
 	}
-	free(line2);
 	return (0);
 }
 
@@ -119,7 +95,6 @@ void	write_map(char *path_map, t_map *map)
 {
 	int		i;
 	int		j;
-	//int		fd;
 	char	*line;
 
 	map->map = ft_memalloc(sizeof(char *) * (map->n_lines + 1));

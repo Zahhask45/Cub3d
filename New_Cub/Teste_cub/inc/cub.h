@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 14:27:31 by jodos-sa          #+#    #+#             */
-/*   Updated: 2023/11/24 17:36:13 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:44:15 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,10 @@ bool	valid_map_coord(int coord, int size);
 int		get_mini_offset(t_mini *minimap, int map_size, int pos);
 int		get_mini_offset(t_mini *minimap, int map_size, int pos);
 bool	valid_map_coord(int coord, int size);
-void	draw_minimap(t_mini *minimap);
+void	clean_map(t_map *map);
+void	finish_gnl(char *line, int fd);
+void	clean_msg(t_map *map, char *line, char *msg, int gnl);
+void	error_dup(t_map *map, char *line);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);
@@ -169,6 +172,7 @@ void	start_text(t_map *map);
 void	init_img(t_map *map, t_img *image, int width, int height);
 
 //* MINIMAP
+void	draw_minimap(t_mini *minimap);
 void	init_minimap(t_map *map);
 
 //* INIT INFO

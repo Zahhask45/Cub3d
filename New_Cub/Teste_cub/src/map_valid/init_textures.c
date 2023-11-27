@@ -6,7 +6,7 @@
 /*   By: jodos-sa <jodos-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:41:10 by brumarti          #+#    #+#             */
-/*   Updated: 2023/11/24 18:55:24 by jodos-sa         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:44:48 by jodos-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,7 @@ void	init_rgb(char *line, t_map *map, int j)
 		{
 			start = j;
 			if (line[j - 1] == '-')
-			{
-				free (line);
-				while (1)
-				{
-					line = get_next_line(map->fd);
-					if (!line)
-						break ;
-					free(line);
-				}
-				close(map->fd);
-				free_tab((void **)map->map);
-				free(map->img[NORTH].path);
-				free(map->img[SOUTH].path);
-				free(map->img[WEST].path);
-				free(map->img[EAST].path);
-				error_msg("Invalid RGB.");
-			}
+				clean_msg(map, line, "Invalid RGB.", 1);
 			while (ft_isdigit(line[++j]))
 				;
 			temp = ft_substr(line, start, j - start);
@@ -69,46 +53,8 @@ void	init_rgb(char *line, t_map *map, int j)
 		}
 	}
 	if (index == 2)
-	{
-		free (line);
-		while (1)
-		{
-			line = get_next_line(map->fd);
-			if (!line)
-				break ;
-			free(line);
-		}
-		close(map->fd);
-		free_tab((void **)map->map);
-		free(map->img[NORTH].path);
-		free(map->img[SOUTH].path);
-		free(map->img[WEST].path);
-		free(map->img[EAST].path);
-		error_msg("Missing RGB.");
-	}
+		clean_msg(map, line, "Missing RGB.", 1);
 	to_hex(map);
-}
-
-void	error_dup(t_map *map, char *line)
-{
-	free(line);
-	while (1)
-	{
-		line = get_next_line(map->fd);
-		if (!line)
-			break ;
-		free(line);
-	}
-	if (map->img[NORTH].path)
-		free(map->img[NORTH].path);
-	if (map->img[SOUTH].path)
-		free(map->img[SOUTH].path);
-	if (map->img[WEST].path)
-		free(map->img[WEST].path);
-	if (map->img[EAST].path)
-		free(map->img[EAST].path);
-	free_tab((void**)map->map);
-	error_msg("Duplicate Texture !");
 }
 
 void	loop_textures(char *line, t_map *map, char c, int j)
@@ -116,8 +62,8 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 	int	i;
 	int	start;
 
-	i = j + 2;
-	while (line[i])
+	i = j + 2 - 1;
+	while (line[++i])
 	{
 		if (ft_isalpha(line[i]) || line[i] == '.'
 			|| line[i] == '/' || line[i] == '.' || line[i] == '/')
@@ -125,37 +71,18 @@ void	loop_textures(char *line, t_map *map, char c, int j)
 			start = i;
 			while (line[i] && !ft_iswspace(line[i]) && line[i] != '\n')
 				i++;
-			if (c == 'N')
-			{
-				if (!map->img[NORTH].path)
-					map->img[NORTH].path = ft_substr(line, start, i - start);
-				else
-					error_dup(map, line);
-			}
-			else if (c == 'S')
-			{
-				if (!map->img[SOUTH].path)
-					map->img[SOUTH].path = ft_substr(line, start, i - start);
-				else
-					error_dup(map, line);
-			}
-			else if (c == 'W')
-			{
-				if (!map->img[WEST].path)
-					map->img[WEST].path = ft_substr(line, start, i - start);
-				else
-					error_dup(map, line);
-			}
+			if (c == 'N' && !map->img[NORTH].path)
+				map->img[NORTH].path = ft_substr(line, start, i - start);
+			else if (c == 'S' && !map->img[SOUTH].path)
+				map->img[SOUTH].path = ft_substr(line, start, i - start);
+			else if (c == 'W' && !map->img[WEST].path)
+				map->img[WEST].path = ft_substr(line, start, i - start);
+			else if (c == 'E' && !map->img[EAST].path)
+				map->img[EAST].path = ft_substr(line, start, i - start);
 			else
-			{
-				if (!map->img[EAST].path)
-					map->img[EAST].path = ft_substr(line, start, i - start);
-				else
-					error_dup(map, line);
-			}
+				error_dup(map, line);
 			break ;
 		}
-		i++;
 	}
 }
 
@@ -184,23 +111,7 @@ void	init_textures(t_map *map, int fd)
 		j = 0;
 		line = get_next_line(fd);
 		if (line[0] == '1' || line[0] == '0')
-		{
-			free (line);
-			while (1)
-			{
-				line = get_next_line(map->fd);
-				if (!line)
-					break ;
-				free(line);
-			}
-			close(map->fd);
-			free_tab((void **)map->map);
-			free(map->img[NORTH].path);
-			free(map->img[SOUTH].path);
-			free(map->img[WEST].path);
-			free(map->img[EAST].path);
-			error_msg("Map can't come first.");
-		}
+			clean_msg(map, line, "Map can't come first.", 1);
 		while (ft_iswspace(line[j]))
 			j++;
 		if (line[j] != '\n')
