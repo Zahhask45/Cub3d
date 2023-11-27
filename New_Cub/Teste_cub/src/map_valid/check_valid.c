@@ -68,13 +68,12 @@ void	validate_map(t_map *map)
 		while (j < (int)ft_strlen(map->map[i]))
 		{
 			c = map->map[i][j];
-			if (i == 0 || i == map->n_lines - 1 || j == 0
-				|| j == (int)ft_strlen(map->map[i]) - 1)
-			{
-				if (valid_border(c))
-					clean_msg(map, NULL, "Invalid char.", 0);
-			}
-			else if (c != '1' && c != '0' && c != ' ' && c != map->player.dir)
+			if ((i == 0 || i == map->n_lines - 1 || j == 0
+					|| j == (int)ft_strlen(map->map[i]) - 1) && valid_border(c))
+				clean_msg(map, NULL, "Invalid char.", 0);
+			if (c == ' ')
+				map->map[i][j] = '1';
+			else if (c != '1' && c != '0' && c != map->player.dir)
 				error_msg("Invalid char!");
 			j++;
 		}

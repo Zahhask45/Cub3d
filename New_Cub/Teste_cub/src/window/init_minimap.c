@@ -82,6 +82,8 @@ void	init_minimap(t_map *map)
 			(int)map->player.pos_y);
 	if (minimap.off_y < 0)
 		minimap.off_y = 0;
+	if (minimap.off_x < 0)
+		minimap.off_x = 0;
 	minimap.map = gen_minimap(map, &minimap);
 	render_minimap(map, &minimap);
 	free_tab((void **)minimap.map);
