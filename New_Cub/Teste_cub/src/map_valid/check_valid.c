@@ -25,8 +25,8 @@ void	valid_textures(t_map *map)
 	int		j;
 	char	*temp;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
 		j = i + 1;
 		while (j < 4)
@@ -40,19 +40,41 @@ void	valid_textures(t_map *map)
 			clean_msg(map, NULL, "Invalid Dir.", 0);
 		temp = ft_substr(map->img[i].path, ft_strlen(map->img[i].path) - 4, 4);
 		if (ft_strncmp(temp, ".xpm", 4) != 0)
-			error_msg("Invalid file type.");
+		{
+			free(temp);
+			clean_msg(map, NULL, "Invalid file type.", 0);
+		}
 		free(temp);
-		i++;
 	}
 }
 
 void	rgb_player(t_map *map)
 {
 	if (map->f_rgb[0] == -1 || map->c_rgb[0] == -1)
-		error_msg("Missing RGB");
+		clean_msg(map, NULL, "Missing RGB.", 0);
 	valid_textures(map);
 	if (map->player.dir == 'X')
 		clean_msg(map, NULL, "Missing Player.", 0);
+}
+
+void	search_border(t_map *map, int index, int line)
+{
+	int		i;
+	char	*temp;
+
+	if (line == map->n_lines - 2)
+		temp = ft_strdup(map->map[line + 1]);
+	else
+		temp = ft_strdup(map->map[line - 1]);
+	i = 0;
+	while (temp[i] && i < index)
+		i++;
+	if (!temp[i] || temp[i] != '1')
+	{
+		free(temp);
+		clean_msg(map, NULL, "Invalid char.", 0);
+	}
+	free(temp);
 }
 
 void	validate_map(t_map *map)
@@ -68,13 +90,15 @@ void	validate_map(t_map *map)
 		while (j < (int)ft_strlen(map->map[i]))
 		{
 			c = map->map[i][j];
+			if ((i == 1 || i == map->n_lines - 2) && c == '0')
+				search_border(map, j, i);
 			if ((i == 0 || i == map->n_lines - 1 || j == 0
 					|| j == (int)ft_strlen(map->map[i]) - 1) && valid_border(c))
 				clean_msg(map, NULL, "Invalid char.", 0);
 			if (c == ' ')
 				map->map[i][j] = '1';
 			else if (c != '1' && c != '0' && c != map->player.dir)
-				error_msg("Invalid char!");
+				clean_msg(map, NULL, "Invalid char.", 0);
 			j++;
 		}
 		i++;

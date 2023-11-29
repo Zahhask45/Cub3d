@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 
 	if (argc != 2)
-		return (EXIT_FAILURE);
+		error_msg("Wrong number of arguments");
 	init_all(&map);
 	create_map(argv[1], &map);
 	p_pos(&map);
