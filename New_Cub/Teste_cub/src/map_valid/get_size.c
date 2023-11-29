@@ -55,3 +55,22 @@ void	get_size(char *path_map, t_map *map)
 	}
 	map->n_lines = len;
 }
+
+void	fill_spaces(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->n_lines)
+	{
+		j = 0;
+		while (j < (int)ft_strlen(map->map[i]))
+		{
+			if (map->map[i][j] == ' ')
+				map->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}

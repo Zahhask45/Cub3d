@@ -155,6 +155,7 @@ void	clean_map(t_map *map);
 void	finish_gnl(char *line, int fd);
 void	clean_msg(t_map *map, char *line, char *msg, int gnl);
 void	error_dup(t_map *map, char *line);
+void	fill_spaces(t_map *map);
 
 //* CREATE_MAP
 void	create_map(char *path_map, t_map *map);

@@ -129,5 +129,6 @@ void	create_map(char *path_map, t_map *map)
 		error_msg("Invalid char !");
 	get_size(path_map, map);
 	write_map(path_map, map);
+	fill_spaces(map);
 	validate_map(map);
 }

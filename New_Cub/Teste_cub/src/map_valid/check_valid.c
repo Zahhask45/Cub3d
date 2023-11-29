@@ -60,21 +60,29 @@ void	rgb_player(t_map *map)
 void	search_border(t_map *map, int index, int line)
 {
 	int		i;
-	char	*temp;
+	char	*temp1;
+	char	*temp2;
 
-	if (line == map->n_lines - 2)
-		temp = ft_strdup(map->map[line + 1]);
-	else
-		temp = ft_strdup(map->map[line - 1]);
 	i = 0;
-	while (temp[i] && i < index)
+	temp1 = ft_strdup(map->map[line - 1]);
+	while (temp1[i] && i < index)
 		i++;
-	if (!temp[i] || temp[i] != '1')
+	if (!temp1[i] || (temp1[i] != '1' && temp1[i] != '0'))
 	{
-		free(temp);
+		free(temp1);
 		clean_msg(map, NULL, "Invalid char.", 0);
 	}
-	free(temp);
+	free(temp1);
+	temp2 = ft_strdup(map->map[line + 1]);
+	i = 0;
+	while (temp2[i] && i < index)
+		i++;
+	if (!temp2[i] || (temp2[i] != '1' && temp2[i] != '0'))
+	{
+		free(temp2);
+		clean_msg(map, NULL, "Invalid char.", 0);
+	}
+	free(temp2);
 }
 
 void	validate_map(t_map *map)
@@ -90,13 +98,11 @@ void	validate_map(t_map *map)
 		while (j < (int)ft_strlen(map->map[i]))
 		{
 			c = map->map[i][j];
-			if ((i == 1 || i == map->n_lines - 2) && c == '0')
+			if ((i > 0 && i < map->n_lines - 1) && c == '0')
 				search_border(map, j, i);
 			if ((i == 0 || i == map->n_lines - 1 || j == 0
 					|| j == (int)ft_strlen(map->map[i]) - 1) && valid_border(c))
 				clean_msg(map, NULL, "Invalid char.", 0);
-			if (c == ' ')
-				map->map[i][j] = '1';
 			else if (c != '1' && c != '0' && c != map->player.dir)
 				clean_msg(map, NULL, "Invalid char.", 0);
 			j++;
