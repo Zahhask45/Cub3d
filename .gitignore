@@ -50,5 +50,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-cub
-mlx-test
+Cub3D/cub3D
