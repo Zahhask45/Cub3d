@@ -2,8 +2,6 @@
 
 A 42-school style raycasting engine inspired by Wolfenstein 3D. This repository contains a complete MiniLibX-based 3D renderer with textured walls, a dynamic minimap, mouse and keyboard controls, and a robust `.cub` map parser with extensive validation.
 
-The primary implementation lives in `CUBORMINI/`. There is also a mirrored scaffold under `New_Cub/Teste_cub/` with the same structure for experimentation.
-
 ---
 
 ## Features
@@ -21,7 +19,7 @@ The primary implementation lives in `CUBORMINI/`. There is also a mirrored scaff
 
 ## Project Layout
 
-- `CUBORMINI/`
+- `Cub3D/`
   - `inc/` – public headers (see `cub.h` for types and constants)
   - `src/` – source code grouped by domain
     - `init/` – initialization of map, textures, rays, and player
@@ -51,12 +49,12 @@ sudo apt update && sudo apt install -y build-essential libx11-dev libxext-dev
 
 Build the project:
 ```bash
-cd CUBORMINI
+cd Cub3D
 make
 ```
 
 This compiles `libft` and `MiniLibX`, then produces the executable:
-- Binary: `cub`
+- Binary: `cub3D`
 
 Clean targets:
 ```bash
@@ -69,9 +67,9 @@ make re      # full rebuild
 
 ## Run
 
-Use any `.cub` file from `CUBORMINI/maps/valid/` as an example:
+Use any `.cub` file from `Cub3D/maps/valid/` as an example:
 ```bash
-./cub maps/valid/subject_map.cub
+./cub3D maps/valid/subject_map.cub
 ```
 If no argument or a wrong number of arguments is provided, the program exits with failure. The window title is set to `BANANA` by default.
 
@@ -141,7 +139,7 @@ Performance-critical portions: DDA stepping, texture coordinate calculation, and
 
 ## Assets
 
-- `CUBORMINI/Textures/` includes sample PNG and XPM files. The runtime requires `.xpm` for walls.
+- `Cub3D/Textures/` includes sample PNG and XPM files. The runtime requires `.xpm` for walls.
 - Additional packs under `PixelTexturePack/Textures/` can be used to craft your own `.cub` maps (convert to XPM as needed).
 
 ---
